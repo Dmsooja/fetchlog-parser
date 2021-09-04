@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import LogfileForm from './components/LogfileForm';
+import Output from './components/Output';
+import { Button, Checkbox, Form } from 'semantic-ui-react'
+
+function csvToJson (logfile) {
+ console.log(logfile)
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LogfileForm />
+      <Output />      
     </div>
   );
 }
