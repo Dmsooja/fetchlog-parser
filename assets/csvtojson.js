@@ -1,0 +1,8 @@
+const reg = new RegExp(/( |"(.*)")/, 'g');
+const columns = ['col01', 'col02', 'col03', 'col04', 'col05', 'col06', 'col07', 'col08', 'col09', 'col10', 'col11', 'col12', 'col13', 'col14'];
+
+const res = `[1629447444] [access] 86.234.158.184 eulerian.thalasseo.com 443 GET HTTP/1.1 /col878a/-/870545396?ref=CAMINTERN-10E250-G7T0&ville=st%20vincent%20sur%20l%27isle&type=TYPE_DE_COMMANDE&prdp0d0=Hotel_007072&nom=clauzel&eemail=clauzel.patrick%40cegetel.net&url=https%3A%2F%2Freservation.thalasseo.com%2Fsalesprocess-v2%2Fconfirmation.to%3Fprofile%3DDuO2bn10s%252FWM14IeR%252FkvwOOrIrPuNFvEeP%252FeNuYIJiAIAxwhuQJMlQ%253D%253D&urlp=%2Fsalesprocess%2FBP%20-%20Etape%203%20-%20B2C&ville_de_depart=Sans%20transport&fra=0&sd=24&telephone=0688982463&date_depart=2021%2F08%2F21&id_produit=332424&payment=PAYLINE&titre=MR&prdr0=332424&prix=841.00000000000000000000&from=desktop&pays=France&ss=1366x768&duree=3&date_retour=2021%2F08%2F24&pagegroup=BP3&euidlls=dUSJjpL.TfaR2xUg.3jUxU24fIoQQWf8G3nwUFqhlQpU8cYScdUW2w--&prdq0=1&prenom=patrick&etablissement=Bayonne%20H%C3%B4tel%20%26%20Spa%2a%2a%2a%2a%20CAT%20SOINS%20PROL%202022&code_postal=24420&nombre_de_personnes=2&url_produit=https%3A%2F%2Fwww.thalasseo.com%2Fhotel%2Fle-bayonne%2F7072%2Fpid%3D332424&prda0=841.00000000000000000000&destination=France%20%7C%20Bayonne&prdp0k0=hotel&amount=841.00000000000000000000& https://reservation.thalasseo.com/ [8ms] [200] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" dUSJjpL.TfaR2xUg.3jUxU24fIoQQWf8G3nwUFqhlQpU8cYScdUW2w--`.split(reg).filter(item => !!(item?.trim()))
+.reduce((acc, curr, idx) => ({...acc, [columns[idx]]: curr}), {});
+
+
+console.log('res', res);
