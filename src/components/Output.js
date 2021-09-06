@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Accordion, Icon } from 'semantic-ui-react'
+import { Accordion } from 'semantic-ui-react'
 
 let panels = [
     {
@@ -51,16 +51,15 @@ export default class Output extends Component {
 
         return (
             <div class="output-section" >
-                <div class="tags-section">
+                <div id="tags-section">
 
                 </div>
 
                 <div class="tables">
                     <Accordion
-                    styled
-                        defaultActiveIndex={0}
+                        styled
+                        defaultActiveIndex={[0]}
                         exclusive={false}
-                        
                         panels={panels}
                     />
                 </div>

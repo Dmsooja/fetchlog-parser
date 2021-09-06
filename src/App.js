@@ -1,16 +1,11 @@
 import './App.css';
-import LogfileForm from './components/LogfileForm';
+import Upload from './components/Upload';
 import Output from './components/Output';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
-
-function csvToJson (logfile) {
- console.log(logfile)
-}
 
 function App() {
   return (
     <div className="App">
-      <LogfileForm />
+      <Upload />
       <Output />      
     </div>
   );
