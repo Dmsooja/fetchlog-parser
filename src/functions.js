@@ -1,4 +1,4 @@
-import { data } from './data'
+import { tags } from './data'
 
 //Initialise variables
 let logs = []
@@ -48,19 +48,27 @@ function separateColumns(line) {
 
 
 //Filter collector and push to the right array
-
+//arraytag = filter de l'array des collectors
 function colFilter() {
-    logs.forEach(l => {
-        l.collector.includes("toto" && "titi") ? genericTags.push(l) : null
-        l.collector.includes("") ? productTags.push(l) : null
-        l.collector.includes("") ? categoryTags.push(l) : null
-        l.collector.includes("") ? searchTags.push(l) : null
-        l.collector.includes("") ? errorTags.push(l) : null
-        l.collector.includes("") ? addToCartTags.push(l) : null
-        l.collector.includes("") ? cartPageTags.push(l) : null
-        l.collector.includes("") ? estimateTags.push(l) : null
-        l.collector.includes("") ? conversionTags.push(l) : null
-    });
+    logs.forEach(l => console.log(l.collector.includes("prdr1")))
+    // logs.forEach(l => console.log(l.collector.includes("prdr0")))
+    console.log(
+        logs.filter(
+            tags.find(t => t.name === "générique")
+            .includedParams
+        )
+    );
+    // logs.forEach(l => {
+        // genericTags = l.collector.filter(tags.includedParams);
+        // productTags = l.collector.filter(tags.includedParams);
+        // categoryTags = l.collector.filter(tags.includedParams);
+        // searchTags = l.collector.filter(tags.includedParams);
+        // errorTags = l.collector.filter(tags.includedParams);
+        // addToCartTags = l.collector.filter(tags.includedParams);
+        // cartPageTags = l.collector.filter(tags.includedParams);
+        // estimateTags = l.collector.filter(tags.includedParams);
+        // conversionTags = l.collector.filter(tags.includedParams);
+    // });
 
     // logs.forEach(l => {
     //     l.includedParams.forEach(ip => {

@@ -118,6 +118,3 @@ export let tags = [{
     ]
 },
 ]
-
-// export let data = JSON.stringify(tags)
-export let data = tags
