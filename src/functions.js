@@ -1,24 +1,15 @@
-import { tags } from './data'
+import { filters } from './filters'
 
-//Initialise variables
-let logs = []
-//Tags array for output
-let genericTags = [];
-let productTags = [];
-let categoryTags = [];
-let searchTags = [];
-let errorTags = [];
-let addToCartTags = [];
-let cartPageTags = [];
-let estimateTags = [];
-let conversionTags = [];
+const logs = []
 
-
+export const tagsOutput = {};
 
 //Separate lines and columns
 export function separateLines(text) {
     const reg = new RegExp(/\n/g);
     let lines = text.split(reg)
+    // Clear logs
+    logs.splice(0, logs.length);
     lines.forEach(line => {
         separateColumns(line)
     });
@@ -26,6 +17,7 @@ export function separateLines(text) {
 }
 
 function separateColumns(line) {
+
     const reg = new RegExp(/( )|"(.*)"/g);
     const headers = [
         "epoch",
@@ -48,37 +40,29 @@ function separateColumns(line) {
 
 
 //Filter collector and push to the right array
-//arraytag = filter de l'array des collectors
 function colFilter() {
-    logs.forEach(l => console.log(l.collector.includes("prdr1")))
-    // logs.forEach(l => console.log(l.collector.includes("prdr0")))
-    console.log(
-        logs.filter(
-            tags.find(t => t.name === "générique")
-            .includedParams
-        )
-    );
-    // logs.forEach(l => {
-        // genericTags = l.collector.filter(tags.includedParams);
-        // productTags = l.collector.filter(tags.includedParams);
-        // categoryTags = l.collector.filter(tags.includedParams);
-        // searchTags = l.collector.filter(tags.includedParams);
-        // errorTags = l.collector.filter(tags.includedParams);
-        // addToCartTags = l.collector.filter(tags.includedParams);
-        // cartPageTags = l.collector.filter(tags.includedParams);
-        // estimateTags = l.collector.filter(tags.includedParams);
-        // conversionTags = l.collector.filter(tags.includedParams);
-    // });
-
-    // logs.forEach(l => {
-    //     l.includedParams.forEach(ip => {
-    //         ip ? console.log(`${ip} is ${true} for tag ${l.name}`) : console.log(`${ip} is ${false} for tag ${l.name}`)
-    //     })
-    //     l.excludedParams.forEach(ep => {
-    //         ep ? console.log(`${ep} is ${true} for tag ${l.name}`) : console.log(`${ep} is ${false} for tag ${l.name}`)
-    //     })
-    // });
+    //clear tagsOutput
+    for (var tag in tagsOutput) delete tagsOutput[tag];
+    filters.forEach((tag) => {
+        const { name, includedParams, excludedParams } = tag;
+        logs.forEach((log) => {
+            // on transforme la chaine en tableau de query params
+            const queryParams = log.collector.split('&');
+            const isIncludedValid = includedParams.every((includedParam) => queryParams.some(queryParam => queryParam.search(includedParam) !== -1));
+            const isExcludedValid = excludedParams.every((excludedParam) => queryParams.every(queryParam => queryParam.search(excludedParam) === -1));
+            if (isIncludedValid && isExcludedValid) {
+                //si tagsOutput est undefined ou null créer un nouveau tableau sinon push dans le tableau existant tagOutput[name]
+                !!tagsOutput[name] // si on a déjà un tableau
+                    ? tagsOutput[name].push(log) // on push
+                    : tagsOutput[name] = [log] // sinon on crée;
+                }
+            });
+        });
+    // Object.entries(tagsOutput).forEach(([key, value]) => console.log(key, value))
+    return tagsOutput
+    // parseData(tagsOutput)
 }
+
 //Parse data in a table + add column input comment , 10 lines max
 
 //Export the report or copy the line with comment

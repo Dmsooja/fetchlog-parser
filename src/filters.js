@@ -1,6 +1,7 @@
 //Tags properties
-export let tags = [{
-    name: "générique",
+export let filters = [{
+    label: "Generic",
+    name: "genericTags",
     status: "notFound",
     includedParams: [
         "urlp",
@@ -10,10 +11,12 @@ export let tags = [{
         "ref",
         "scart=1",
         "amount",
-        "eise"
+        "eise",
+        "error"
     ]
 }, {
-    name: "produit",
+    label: "Product",
+    name: "productTags",
     status: "notFound",
     includedParams: [
         "prdr0",
@@ -23,10 +26,12 @@ export let tags = [{
         "ref",
         "scart=1",
         "amount",
-        "estimate=1"
+        "estimate=1",
+        "error"
     ]
 }, {
-    name: "catégorie",
+    label: "Category",
+    name: "categoryTags",
     status: "notFound",
     includedParams: [
         "prdr1",
@@ -35,10 +40,12 @@ export let tags = [{
         "ref",
         "scart=1",
         "amount",
-        "estimate=1"
+        "estimate=1",
+        "error"
     ]
 }, {
-    name: "recherche",
+    label: "Search",
+    name: "searchTags",
     status: "notFound",
     includedParams: [
         "eise",
@@ -53,10 +60,11 @@ export let tags = [{
         "estimate=1"
     ]
 }, {
-    name: "erreur",
+    label: "Error",
+    name: "errorTags",
     status: "notFound",
     includedParams: [
-        "error"
+        "error=1"
     ],
     excludedParams: [
         "ref",
@@ -65,7 +73,8 @@ export let tags = [{
         "estimate=1"
     ]
 }, {
-    name: "devis",
+    label: "Estimate",
+    name: "estimateTags",
     status: "notFound",
     includedParams: [
         "ref",
@@ -74,10 +83,10 @@ export let tags = [{
     excludedParams: [
         "scart=1",
         "amount",
-        "estimate=1"
     ]
 }, {
-    name: "ajout au panier",
+    label: "Add to cart",
+    name: "addToCartTags",
     status: "notFound",
     includedParams: [
         "prdr0",
@@ -88,9 +97,11 @@ export let tags = [{
     ],
     excludedParams: [
         "amount",
+        "ref"
     ]
 }, {
-    name: "page panier",
+    label: "Cart page",
+    name: "cartPageTags",
     status: "notFound",
     includedParams: [
         "prdr0",
@@ -101,9 +112,11 @@ export let tags = [{
     ],
     excludedParams: [
         "amount",
+        "ref"
     ]
 }, {
-    name: "vente",
+    label: "Order",
+    name: "orderTags",
     status: "notFound",
     includedParams: [
         "prdr0",
@@ -116,5 +129,4 @@ export let tags = [{
         "scart=1",
         "estimate=1"
     ]
-},
-]
+}]
