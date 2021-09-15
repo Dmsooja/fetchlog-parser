@@ -8,14 +8,24 @@ import { useState } from 'react';
 
 export default function Upload() {
     const [tags, setTags] = useState({});
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (f) => {
+        setLoading(true);
+
         let reader = new FileReader();
-        reader.onloadend = function (f) {
+
+        reader.onloadstart = (f) => {
+            setLoading(true);
+        }
+
+        reader.onloadend = (f) => {
             let res = reader.result
             separateLines(res);
-            setTags(tagsOutput)
+            setTags(tagsOutput);
+            setLoading(false);
         }
+
         reader.readAsText(f);
     }
 
@@ -92,7 +102,7 @@ export default function Upload() {
                 }
             </Container>
             
-            <Output data={ tags } />
+            <Output data={ tags } loading={loading} />
 
         </div>
 

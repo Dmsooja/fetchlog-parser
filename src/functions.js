@@ -58,9 +58,8 @@ function colFilter() {
                 }
             });
         });
-    // Object.entries(tagsOutput).forEach(([key, value]) => console.log(key, value))
-    return tagsOutput
-    // parseData(tagsOutput)
+        return tagsOutput
+        // Object.entries(tagsOutput).forEach(([key, value]) => console.log(key, value))
 }
 
 //Parse data in a table + add column input comment , 10 lines max
