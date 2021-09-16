@@ -13,7 +13,7 @@ export function separateLines(text) {
     lines.forEach(line => {
         separateColumns(line)
     });
-    colFilter()
+    colFilter() // wait until separate columns is done : https://www.delftstack.com/howto/javascript/javascript-wait-for-function-to-finish/
 }
 
 function separateColumns(line) {
@@ -43,6 +43,9 @@ function separateColumns(line) {
 function colFilter() {
     //clear tagsOutput
     for (var tag in tagsOutput) delete tagsOutput[tag];
+    //wait for all the lines to be pushed in logs
+    // let result = await separateLines()
+    // console.log(result)
     filters.forEach((tag) => {
         const { name, includedParams, excludedParams } = tag;
         logs.forEach((log) => {

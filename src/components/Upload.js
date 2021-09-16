@@ -16,17 +16,22 @@ export default function Upload() {
         let reader = new FileReader();
 
         reader.onloadstart = (f) => {
-            setLoading(true);
+            // console.log("on load start", reader.readyState)
         }
 
+        reader.onprogress = (f) => {
+            // console.log("on progress", reader.readyState)
+        }
+
+        reader.readAsText(f);
+
         reader.onloadend = (f) => {
+            // console.log("on load end", reader.readyState)
             let res = reader.result
             separateLines(res);
             setTags(tagsOutput);
             setLoading(false);
         }
-
-        reader.readAsText(f);
     }
 
     const {
@@ -36,7 +41,7 @@ export default function Upload() {
         acceptedFiles,
     } = useDropzone({
         maxFiles: 1,
-        maxSize: 10485760, // 10485760 pour 10Mo ou 104857600 pour 100Mo
+        maxSize: 104857600, // 10485760 pour 10Mo ou 104857600 pour 100Mo
         accept: ".csv",
         onDropAccepted: acceptedFiles => {
             acceptedFiles.forEach(file => {
