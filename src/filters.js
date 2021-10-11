@@ -84,7 +84,19 @@ export let filters = [{
         "scart=1",
         "amount",
     ]
-}, {
+},/* {
+    label: "Estimate Missing Refs",
+    name: "estimateMissingRef",
+    status: "notFound",
+    includedParams: [
+        "estimate=1"
+    ],
+    excludedParams: [
+        "ref",
+        "scart=1",
+        "amount",
+    ]
+}, */{
     label: "Add to cart",
     name: "addToCartTags",
     status: "notFound",

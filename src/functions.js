@@ -48,7 +48,7 @@ function colFilter() {
     // console.log(result)
     filters.forEach((tag) => {
         const { name, includedParams, excludedParams } = tag;
-        logs.forEach((log) => {
+        logs.filter((log) => !!log.collector).forEach((log) => { //gets all the truthy log.collector, excludes the undefined
             // on transforme la chaine en tableau de query params
             const queryParams = log.collector.split('&');
             const isIncludedValid = includedParams.every((includedParam) => queryParams.some(queryParam => queryParam.search(includedParam) !== -1));
