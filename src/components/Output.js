@@ -1,16 +1,25 @@
 import { useState } from 'react';
 import { filters } from '../filters';
-import { Accordion, Loader, Dimmer, Card, Icon, Container } from 'semantic-ui-react';
+import { Tab, Loader, Dimmer, Card, Icon, Container, Menu, Label } from 'semantic-ui-react';
+import CollectorTable from './CollectorTable';
 
 export default function Output(props) {
+
     const { loading } = props;
     // const [loading, setLoading] = useState(false);
     const [isDataReady, setIsDataReady] = useState(false);
     const [isOutputReady, setIsOutputReady] = useState(false);
 
-    return (
+    // const Acc = [
+    //     filters.map((filter, index) => {
+    //         key: index
+    //         title: filter.label
+    //         content: <CollectorTable data={props.data} />
+    //     }
+    //     )]
 
-        <div className="output-section" >
+    return (
+        <div className="output-section">
             <Dimmer.Dimmable as={Container} dimmed={loading}>
                 <Dimmer inverted active={loading} >
                     <Loader active={loading} inverted content={isDataReady === false ? "Preparing data" : "Parsing data"} />
@@ -27,21 +36,41 @@ export default function Output(props) {
                                 </Card>
                             )}
                         </Card.Group>
-                        <Accordion
+                        {/* <Tab menu={ attached= true, tabular=true, content } />
+                            {filters.map((filter, index) => {
+                                <Menu.Item pointing secondary key='messages'>
+                                    {filter.label}<Label>count</Label>
+                                </Menu.Item>
+                                // <Tab.Pane>
+                                //     toto
+                                // </Tab.Pane>
+                            })}
+                        </Tab> */}
+                        {/* <Accordion
                             fluid
-                            styled
-                            defaultActiveIndex={[0]}
+                            // styled
                             exclusive={false}
+                            style={{ margin: "2rem 0" }}
                         >
-                            {
-                                Object.entries(props.data).map(arr => {
-                                    <Accordion.Title>{arr[0]}</Accordion.Title>
-                                })
-                            }
-                        </Accordion>
+                            {filters.map((filter, index) =>
+                                <div>
+                                    {Object.keys(props.data).includes(filter.name) ?
+                                        <Card fluid>
+                                            <Accordion.Title key={index}>
+                                                <Icon size='large' name="dropdown"/>
+                                                {filter.label}
+                                            </Accordion.Title>
+                                            <Accordion.Content>
+                                                <p>toto</p>
+                                            </Accordion.Content>
+                                        </Card>
+                                    : null}
+                                </div>
+                            )}
+                        </Accordion> */}
+
 
                     </div>
-
                     : null
                 }
             </Dimmer.Dimmable>

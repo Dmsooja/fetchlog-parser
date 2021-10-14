@@ -9,9 +9,11 @@ import { useState } from 'react';
 export default function Upload() {
     const [tags, setTags] = useState({});
     const [loading, setLoading] = useState(false)
+    const [hidden, setHidden] = useState(true)
 
     const handleChange = (f) => {
         setLoading(true);
+        setHidden(false);
 
         let reader = new FileReader();
 
@@ -51,15 +53,10 @@ export default function Upload() {
     });
 
     const files = acceptedFiles.map(file => (
-        <li key={file.path}>
-            {file.path} - {file.size} bytes
-        </li>
-    ));
-
-    const acceptedFileItems = acceptedFiles.map(file => (
-        <li key={file.path}>
-            {file.path} - {file.size} bytes
-        </li>
+        <p key={file.path}>
+            File : {file.path}
+            <br/>Size : {file.size} bytes
+        </p>
     ));
 
     const fileRejectionItems = fileRejections.map(({ file, errors }) => {
@@ -69,7 +66,6 @@ export default function Upload() {
                 <ul>
                     {errors.map(e => <li key={e.code}>{e.message}</li>)}
                 </ul>
-
             </li>
         )
     });
@@ -91,20 +87,20 @@ export default function Upload() {
                     <Message warning>
                         <Message.Header>
                             <Icon name='warning' />
-                            Max size : 10Mo
+                            Max size : 100Mo
                         </Message.Header>
                         Your file is too large
                     </Message>
                     : null
                 }
-                {acceptedFileItems.length > 0 ?
-                    <Message info>
+                    <Message
+                        info
+                        hidden={hidden}
+                    >
                         <Message.Header>
                             {files}
                         </Message.Header>
                     </Message>
-                    : null
-                }
             </Container>
             
             <Output data={ tags } loading={loading} />
