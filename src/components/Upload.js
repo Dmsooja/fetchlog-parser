@@ -43,7 +43,7 @@ export default function Upload() {
         acceptedFiles,
     } = useDropzone({
         maxFiles: 1,
-        maxSize: 104857600, // 10485760 pour 10Mo ou 104857600 pour 100Mo
+        maxSize: 1048576000, // 10485760 pour 10Mo, 104857600 pour 100Mo, ou 1048576000 pour 1000Mo
         accept: ".csv",
         onDropAccepted: acceptedFiles => {
             acceptedFiles.forEach(file => {
