@@ -1,36 +1,57 @@
-import { Table } from 'semantic-ui-react'
+import { useState } from 'react';
+import { Table, Accordion, Card, Pagination } from 'semantic-ui-react';
+import { filters } from '../filters';
+import { parseCollector, collectors } from '../functions'
 
 export default function CollectorTable(props) {
-  <Table celled>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Status</Table.HeaderCell>
-        <Table.HeaderCell>Notes</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>Jamie</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>Requires call</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>John</Table.Cell>
-        <Table.Cell>Selected</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>Requires call</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-    </Table.Body>
-  </Table>
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  props.data.forEach(d => {
+    parseCollector(d["collector"])
+  });
+
+
+  return (
+    <div>
+      <Accordion styled fluid exclusive={false}>
+        {props.data.map((d, index) => 
+          <div key={index}>
+            <Accordion.Title
+              index={index}
+              active={activeIndex === index}
+              onClick={() => activeIndex === index ? setActiveIndex(null) : setActiveIndex(index)}
+              style={{ overflowX: 'scroll' }}
+            >
+                {d["collector"]}
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === index}>
+              <Table structured collapsing basic='very' >
+                <Table.Body>
+                  <Table.Row>
+                    { console.log(collectors)
+                    }
+                    <Table.Cell>Params</Table.Cell>
+                    <Table.Cell>Values</Table.Cell>
+                  </Table.Row>
+                  <Table.Row>
+                    <Table.Cell>Param</Table.Cell>
+                    <Table.Cell>Valeur</Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+                <Table.Footer>
+                  <Table.Row>
+                    <Table.HeaderCell colSpan='100'>
+                      <Pagination defaultActivePage={1} totalPages={10} />
+                    </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Footer>
+              </Table>
+            </Accordion.Content>
+          </div>
+
+        )}
+      </Accordion>
+    </div>
+  )
 }
