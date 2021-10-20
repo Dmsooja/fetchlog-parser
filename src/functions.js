@@ -3,6 +3,10 @@ import { filters } from './filters'
 const logs = []
 
 export const tagsOutput = {};
+export const collectors = {
+    params : [],
+    values : []
+};
 
 //Separate lines and columns
 export function separateLines(text) {
@@ -58,13 +62,18 @@ function colFilter() {
                 !!tagsOutput[name] // si on a déjà un tableau
                     ? tagsOutput[name].push(log) // on push
                     : tagsOutput[name] = [log] // sinon on crée;
-                }
-            });
+            }
         });
-        return tagsOutput
-        // Object.entries(tagsOutput).forEach(([key, value]) => console.log(key, value))
+    });
+    return tagsOutput
+    // Object.entries(tagsOutput).forEach(([key, value]) => console.log(key, value))
 }
 
-//Parse data in a table + add column input comment , 10 lines max
+//Get collectors ready for the table + add column input comment , 10 lines max
+export function parseCollector(data) {
+    const queryParams = data.split('&');
+    queryParams.forEach(qp => collectors.params.push(qp.split("=")[0]));
+    queryParams.forEach(qp => collectors.values.push(qp.split("=")[1]));
+}
 
 //Export the report or copy the line with comment
