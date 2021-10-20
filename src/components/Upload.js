@@ -1,12 +1,11 @@
 import { useDropzone } from 'react-dropzone';
 import { separateLines, tagsOutput } from '../functions';
-import Output from './Output';
 import { Segment, Message, Icon, Header, Container } from 'semantic-ui-react'
 import { useState } from 'react';
 
 //Trigger csv treatment functions
 
-export default function Upload() {
+export default function Upload(props) {
     const [tags, setTags] = useState({});
     const [loading, setLoading] = useState(false)
     const [hidden, setHidden] = useState(true)
@@ -33,6 +32,7 @@ export default function Upload() {
             separateLines(res);
             setTags(tagsOutput);
             setLoading(false);
+            props.callback(tags)
         }
     }
 
@@ -102,9 +102,6 @@ export default function Upload() {
                         </Message.Header>
                     </Message>
             </Container>
-            
-            <Output data={ tags } loading={loading} />
-
         </div>
 
     )
