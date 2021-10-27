@@ -5,13 +5,11 @@ import { useState } from 'react';
 
 //Trigger csv treatment functions
 
-export default function Upload(props) {
-    const [tags, setTags] = useState({});
+export default function Upload({ callback }) {
     const [loading, setLoading] = useState(false)
     const [hidden, setHidden] = useState(true)
 
     const handleChange = (f) => {
-        setLoading(true);
         setHidden(false);
 
         let reader = new FileReader();
@@ -27,12 +25,9 @@ export default function Upload(props) {
         reader.readAsText(f);
 
         reader.onloadend = (f) => {
-            // console.log("on load end", reader.readyState)
             let res = reader.result
             separateLines(res);
-            setTags(tagsOutput);
-            setLoading(false);
-            props.callback(tags)
+            callback(tagsOutput)
         }
     }
 

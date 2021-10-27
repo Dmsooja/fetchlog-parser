@@ -141,4 +141,159 @@ export let filters = [{
         "scart=1",
         "estimate=1"
     ]
-}]
+}
+//INSEEC
+// , {
+//     label: "Estimate identification",
+//     name: "estimateTags",
+//     status: "notFound",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "etape2"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate paiement",
+//     name: "estimateTags",
+//     status: "notFound",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "etape5"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate jpo",
+//     name: "estimateTags",
+//     status: "notFound",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "porte-ouverte"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate conference",
+//     name: "estimateTags",
+//     status: "notFound",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "conference"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate rdv perso",
+//     name: "estimateTags",
+//     status: "notFound",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "perso"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate rdv immersion",
+//     name: "estimateTags",
+//     status: "notFound",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "immersion"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate ambassadeur",
+//     name: "estimateTags",
+//     status: "notFound",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "ambassadeur"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate rappel",
+//     name: "estimateTags",
+//     status: "notFound",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "rappel"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Generic etape 4",
+//     name: "genericTags",
+//     status: "notFound",
+//     includedParams: [
+//         "urlp",
+//         "etape4"
+//     ],
+//     excludedParams: [
+//         "prdr0",
+//         "ref",
+//         "scart=1",
+//         "amount",
+//         "eise",
+//         "error"
+//     ]
+// }, {
+//     label: "Generic etape 3",
+//     name: "genericTags",
+//     status: "notFound",
+//     includedParams: [
+//         "urlp",
+//         "etape3"
+//     ],
+//     excludedParams: [
+//         "prdr0",
+//         "ref",
+//         "scart=1",
+//         "amount",
+//         "eise",
+//         "error"
+//     ]
+// }, {
+//     label: "Generic etape 1",
+//     name: "genericTags",
+//     status: "notFound",
+//     includedParams: [
+//         "urlp",
+//         "etape1"
+//     ],
+//     excludedParams: [
+//         "prdr0",
+//         "ref",
+//         "scart=1",
+//         "amount",
+//         "eise",
+//         "error"
+//     ]
+// },
+]

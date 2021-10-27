@@ -3,6 +3,7 @@ import { filters } from './filters'
 const logs = []
 
 export const tagsOutput = {};
+
 export const collectors = {
     params : [],
     values : []
@@ -71,6 +72,9 @@ function colFilter() {
 
 //Get collectors ready for the table + add column input comment , 10 lines max
 export function parseCollector(data) {
+    // Clear params and values in collectors
+    collectors.params.splice(0, collectors.params.length);
+    collectors.params.splice(0, collectors.values.length);
     const queryParams = data.split('&');
     queryParams.forEach(qp => collectors.params.push(qp.split("=")[0]));
     queryParams.forEach(qp => collectors.values.push(qp.split("=")[1]));

@@ -7,21 +7,23 @@ export default function CollectorTable(props) {
 
   const [activeIndex, setActiveIndex] = useState(null);
 
-  props.data.forEach(d => {
-    parseCollector(d["collector"])
-  });
+  // props.data.forEach(d => {
+  //   parseCollector(d["collector"])
+  // });
 
 
   return (
     <div>
-      <Accordion styled fluid exclusive={false}>
-        {props.data.map((d, index) => 
+      <Accordion fluid exclusive={false}>
+        {/* { console.log(collectors)
+        } */}
+        {/* {props.data.map((d, index) => 
           <div key={index}>
             <Accordion.Title
               index={index}
               active={activeIndex === index}
               onClick={() => activeIndex === index ? setActiveIndex(null) : setActiveIndex(index)}
-              style={{ overflowX: 'scroll' }}
+              style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}
             >
                 {d["collector"]}
             </Accordion.Title>
@@ -29,14 +31,12 @@ export default function CollectorTable(props) {
               <Table structured collapsing basic='very' >
                 <Table.Body>
                   <Table.Row>
-                    { console.log(collectors)
-                    }
                     <Table.Cell>Params</Table.Cell>
                     <Table.Cell>Values</Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>Param</Table.Cell>
-                    <Table.Cell>Valeur</Table.Cell>
+                    <Table.Cell>Value</Table.Cell>
                   </Table.Row>
                 </Table.Body>
                 <Table.Footer>
@@ -50,7 +50,7 @@ export default function CollectorTable(props) {
             </Accordion.Content>
           </div>
 
-        )}
+        )} */}
       </Accordion>
     </div>
   )

@@ -9,9 +9,9 @@ function App() {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({});
-  const callback = useCallback((data) => {
-    setData(data);
-  }, []);
+  const callback = (d) => {
+    setData(d);
+  };
 
   const panes = [
     { menuItem: 'Site-centric', render: () => <Tab.Pane className={"basic"} attached={false}><SiteOutput data={data} loading={loading} /></Tab.Pane> },
@@ -21,11 +21,12 @@ function App() {
   return (
     <div className="App">
       <Upload callback={callback} />
+      {Object.entries(data).length !== 0 ?
       <Tab
         menu={{ fluid: true, attached: false, vertical: true, tabular: true }}
         panes={ panes }
         grid={{ paneWidth: 14, tabWidth: 2 }}
-      />
+      /> : null}
     </div>
   );
 }
