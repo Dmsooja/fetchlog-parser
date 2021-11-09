@@ -1,23 +1,49 @@
 import { useState } from 'react';
 import { Table, Accordion, Card, Pagination } from 'semantic-ui-react';
-import { filters } from '../filters';
-import { parseCollector, collectors } from '../functions'
+// import { filters } from '../filters';
+// import { parseCollector, collectors } from '../functions'
+
 
 export default function CollectorTable(props) {
+  
+  const collectors = {
+    params : [],
+    vals : []
+  };
 
+  const cols = Object.entries(collectors)
+  
   const [activeIndex, setActiveIndex] = useState(null);
 
-  // props.data.forEach(d => {
-  //   parseCollector(d["collector"])
-  // });
+  function parseCol(data) {
+    // Clear params and values in collectors
+    console.log("collectors")
+    collectors.params.splice(0, collectors.params.length);
+    collectors.vals.splice(0, collectors.vals.length);
+    const queryParams = data.split('&');
+    queryParams.forEach(qp => collectors.params.push(qp.split("=")[0]));
+    queryParams.forEach(qp => collectors.vals.push(qp.split("=")[1]));
+    console.log(collectors)
+    // return collectors
+  }
+  
+  function fetchData() {
+    props.data.forEach(d => {
+      // parseCollector(d["collector"])
+      parseCol(d["collector"])
+    });  
+  }
+  
+  
+  fetchData()
 
-
+  
   return (
     <div>
       <Accordion fluid exclusive={false}>
         {/* { console.log(collectors)
         } */}
-        {/* {props.data.map((d, index) => 
+        {props.data.map((d, index) =>
           <div key={index}>
             <Accordion.Title
               index={index}
@@ -25,19 +51,17 @@ export default function CollectorTable(props) {
               onClick={() => activeIndex === index ? setActiveIndex(null) : setActiveIndex(index)}
               style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}
             >
-                {d["collector"]}
+              {d["collector"]}
             </Accordion.Title>
             <Accordion.Content active={activeIndex === index}>
               <Table structured collapsing basic='very' >
                 <Table.Body>
-                  <Table.Row>
-                    <Table.Cell>Params</Table.Cell>
-                    <Table.Cell>Values</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>Param</Table.Cell>
-                    <Table.Cell>Value</Table.Cell>
-                  </Table.Row>
+                    {cols.map((col, index) =>
+                      <Table.Row key={index}>
+                        <Table.Cell>{col.params}</Table.Cell>
+                        <Table.Cell>{col.vals}</Table.Cell>
+                      </Table.Row>
+                    )}
                 </Table.Body>
                 <Table.Footer>
                   <Table.Row>
@@ -50,7 +74,7 @@ export default function CollectorTable(props) {
             </Accordion.Content>
           </div>
 
-        )} */}
+        )}
       </Accordion>
     </div>
   )

@@ -11,14 +11,14 @@ export default function SiteOutput(props) {
 
     return (
         <div className="output-section">
-            <Dimmer.Dimmable as={Container} dimmed={loading}>
+            {/* <Dimmer.Dimmable as={Container} dimmed={loading}>
                 <Dimmer inverted active={loading} >
                     <Loader
                         active={loading}
                         inverted 
                         // content={isDataReady === false ? "Preparing data" : "Parsing data"} 
                     />
-                </Dimmer>
+                </Dimmer> */}
                 {Object.entries(props.data).length !== 0 ?
                     <div>
                         <Card.Group itemsPerRow={3}>
@@ -54,7 +54,7 @@ export default function SiteOutput(props) {
                     </div>
                     : null
                 }
-            </Dimmer.Dimmable>
+            {/* </Dimmer.Dimmable> */}
         </div >
     )
 }
