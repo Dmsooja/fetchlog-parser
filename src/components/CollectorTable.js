@@ -11,7 +11,7 @@ export default function CollectorTable(props) {
     vals : []
   };
 
-  const cols = Object.entries(collectors)
+  const cols = Object.values(collectors)
   
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -58,8 +58,8 @@ export default function CollectorTable(props) {
                 <Table.Body>
                     {cols.map((col, index) =>
                       <Table.Row key={index}>
-                        <Table.Cell>{col.params}</Table.Cell>
-                        <Table.Cell>{col.vals}</Table.Cell>
+                        <Table.Cell>{col[0]}</Table.Cell>
+                        <Table.Cell>{col[1]}</Table.Cell>
                       </Table.Row>
                     )}
                 </Table.Body>
