@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Table, Accordion, Card, Pagination } from 'semantic-ui-react';
-// import { filters } from '../filters';
-import { parseCol, cols } from '../functions'
+import { Table, Accordion, Pagination } from 'semantic-ui-react';
+import { parseCol, collectors } from '../functions'
 
 
 export default function CollectorTable(props) {
@@ -17,6 +16,8 @@ export default function CollectorTable(props) {
 
   fetchData()
 
+  let params = collectors.params;
+  let values = collectors.values;
 
   return (
     <div>
@@ -31,21 +32,21 @@ export default function CollectorTable(props) {
             >
               {d["collector"]}
             </Accordion.Title>
-            <Accordion.Content active={activeIndex === index} style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}>
-              <Table structured collapsing celled>
+            <Accordion.Content active={activeIndex === index}>
+              <Table collapsing selectable>
                 <Table.Header>
-                  <Table.Row>
-                    {cols[0].map((param, index) =>
-                      <Table.HeaderCell key={index}>{param}</Table.HeaderCell>
-                    )}
+                  <Table.Row style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}>
+                    <Table.HeaderCell>Params</Table.HeaderCell>
+                    <Table.HeaderCell>Values</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                  <Table.Row>
-                    {cols[1].map((value, index) =>
-                      <Table.Cell key={index}>{value}</Table.Cell>
-                    )}
-                  </Table.Row>
+                  {collectors.params.map((col, index) =>
+                    <Table.Row key={index}>
+                      <Table.Cell key={params[index]}>{params[index]}</Table.Cell>
+                      <Table.Cell key={values[index]}>{values[index]}</Table.Cell>
+                    </Table.Row>
+                  )}
                 </Table.Body>
                 <Table.Footer>
                   <Table.Row>

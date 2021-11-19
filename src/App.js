@@ -2,7 +2,7 @@ import './App.css';
 import Upload from './components/Upload';
 import SiteOutput from './components/site-centric/SiteOutput';
 import { Tab } from 'semantic-ui-react';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 
 function App() {

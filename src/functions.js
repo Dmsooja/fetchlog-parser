@@ -2,14 +2,12 @@ import { filters } from './filters'
 
 const logs = []
 
-const collectors = {
+export const collectors = {
     params : [],
     values : []
 };
 
 export const tagsOutput = {};
-
-export const cols = Object.values(collectors);
 
 //Separate lines and columns
 export function separateLines(text) {

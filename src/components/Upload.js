@@ -6,7 +6,6 @@ import { useState } from 'react';
 //Trigger csv treatment functions
 
 export default function Upload({ callback }) {
-    const [loading, setLoading] = useState(false)
     const [hidden, setHidden] = useState(true)
 
     const handleChange = (f) => {
