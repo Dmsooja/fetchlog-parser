@@ -10,7 +10,9 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({});
   const callback = (d) => {
+    setLoading(true);
     setData(d);
+    setTimeout(() => setLoading(false), 2000)
   };
 
   const panes = [

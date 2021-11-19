@@ -2,12 +2,14 @@ import { filters } from './filters'
 
 const logs = []
 
-export const tagsOutput = {};
-
-export const collectors = {
+const collectors = {
     params : [],
     values : []
 };
+
+export const tagsOutput = {};
+
+export const cols = Object.values(collectors);
 
 //Separate lines and columns
 export function separateLines(text) {
@@ -70,15 +72,30 @@ function colFilter() {
 }
 
 //Get collectors ready for the table + add column input comment , 10 lines max
-export function parseCollector(data) {
+export function parseCol(data) {
     // Clear params and values in collectors
     collectors.params.splice(0, collectors.params.length);
     collectors.values.splice(0, collectors.values.length);
     const queryParams = data.split('&');
     queryParams.forEach(qp => collectors.params.push(qp.split("=")[0]));
     queryParams.forEach(qp => collectors.values.push(qp.split("=")[1]));
-    console.log(collectors)
     return collectors
 }
 
 //Export the report or copy the line with comment
+// const collectors = {
+//     params: [],
+//     vals: []
+//   };
+
+//   const cols = Object.values(collectors)
+
+//   function parseCol(data) {
+//     // Clear params and values in collectors
+//     collectors.params.splice(0, collectors.params.length);
+//     collectors.vals.splice(0, collectors.vals.length);
+//     const queryParams = data.split('&');
+//     queryParams.forEach(qp => collectors.params.push(qp.split("=")[0]));
+//     queryParams.forEach(qp => collectors.vals.push(qp.split("=")[1]));
+//     // return collectors
+//   }
