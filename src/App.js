@@ -12,7 +12,7 @@ function App() {
   const callback = (d) => {
     setLoading(true);
     setData(d);
-    setTimeout(() => setLoading(false), 2000)
+    setTimeout(() => setLoading(false), 500)
   };
 
   const panes = [

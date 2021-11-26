@@ -7,9 +7,27 @@ export default function CollectorTable(props) {
 
   const [activeIndex, setActiveIndex] = useState(null);
 
+  // const totalItems = collectors.params.length;
+  // const [pageItems, setPageItems] = useState(0);
+  const pageItems = collectors.params
+  const [activePage, setActivePage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [itemsPerPage] = useState(10);
+
+  const lastItemId = activePage * itemsPerPage;
+  const firstItemId = lastItemId - itemsPerPage;
+  const items = pageItems.slice(firstItemId, lastItemId);
+
+  const handlePageChange = (evt, pageData) => {
+    console.log("page number", activePage);
+    setActivePage(pageData.activePage);
+    // setApiUrl('https://swapi.co/api/people/?page=' + page.activePage.toString());
+    // setPageItems();
+  }
+
   function fetchData() {
     props.data?.forEach(d => {
-      parseCol(d["collector"])
+      parseCol(d["collector"]);
     });
   }
 
@@ -48,18 +66,15 @@ export default function CollectorTable(props) {
                     </Table.Row>
                   )}
                 </Table.Body>
-                <Table.Footer>
-                  <Table.Row>
-                    <Table.HeaderCell colSpan='100'>
-                      <Pagination defaultActivePage={1} totalPages={10} />
-                    </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Footer>
               </Table>
             </Accordion.Content>
           </div>
-
         )}
+        <Pagination
+          defaultActivePage={1}
+          totalPages={Math.ceil(collectors.params.length / 10)}
+          onPageChange={handlePageChange}
+        />
       </Accordion>
     </div>
   )
