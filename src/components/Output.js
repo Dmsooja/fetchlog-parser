@@ -36,40 +36,6 @@ export default function Output(props) {
                                 </Card>
                             )}
                         </Card.Group>
-                        {/* <Tab menu={ attached= true, tabular=true, content } />
-                            {filters.map((filter, index) => {
-                                <Menu.Item pointing secondary key='messages'>
-                                    {filter.label}<Label>count</Label>
-                                </Menu.Item>
-                                // <Tab.Pane>
-                                //     toto
-                                // </Tab.Pane>
-                            })}
-                        </Tab> */}
-                        {/* <Accordion
-                            fluid
-                            // styled
-                            exclusive={false}
-                            style={{ margin: "2rem 0" }}
-                        >
-                            {filters.map((filter, index) =>
-                                <div>
-                                    {Object.keys(props.data).includes(filter.name) ?
-                                        <Card fluid>
-                                            <Accordion.Title key={index}>
-                                                <Icon size='large' name="dropdown"/>
-                                                {filter.label}
-                                            </Accordion.Title>
-                                            <Accordion.Content>
-                                                <p>toto</p>
-                                            </Accordion.Content>
-                                        </Card>
-                                    : null}
-                                </div>
-                            )}
-                        </Accordion> */}
-
-
                     </div>
                     : null
                 }
