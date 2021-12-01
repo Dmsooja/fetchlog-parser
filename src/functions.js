@@ -80,20 +80,4 @@ export function parseCol(data) {
     return collectors
 }
 
-//Export the report or copy the line with comment
-// const collectors = {
-//     params: [],
-//     vals: []
-//   };
-
-//   const cols = Object.values(collectors)
-
-//   function parseCol(data) {
-//     // Clear params and values in collectors
-//     collectors.params.splice(0, collectors.params.length);
-//     collectors.vals.splice(0, collectors.vals.length);
-//     const queryParams = data.split('&');
-//     queryParams.forEach(qp => collectors.params.push(qp.split("=")[0]));
-//     queryParams.forEach(qp => collectors.vals.push(qp.split("=")[1]));
-//     // return collectors
-//   }
+//Caractère interdits : [àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]|\s

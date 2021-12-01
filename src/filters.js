@@ -2,7 +2,7 @@
 export let filters = [{
     label: "Generic",
     name: "genericTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "urlp",
     ],
@@ -17,7 +17,7 @@ export let filters = [{
 }, {
     label: "Product",
     name: "productTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "prdr0",
     ],
@@ -32,7 +32,7 @@ export let filters = [{
 }, {
     label: "Category",
     name: "categoryTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "prdr1",
     ],
@@ -46,7 +46,7 @@ export let filters = [{
 }, {
     label: "Search",
     name: "searchTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "eise",
         "eisd0",
@@ -62,7 +62,7 @@ export let filters = [{
 }, {
     label: "Error",
     name: "errorTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "error=1"
     ],
@@ -75,7 +75,7 @@ export let filters = [{
 }, {
     label: "Estimate",
     name: "estimateTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "ref",
         "estimate=1"
@@ -87,7 +87,7 @@ export let filters = [{
 },/* {
     label: "Estimate Missing Refs",
     name: "estimateMissingRef",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "estimate=1"
     ],
@@ -99,7 +99,7 @@ export let filters = [{
 }, */{
     label: "Add to cart",
     name: "addToCartTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "prdr0",
         "prda0",
@@ -114,7 +114,7 @@ export let filters = [{
 }, {
     label: "Cart page",
     name: "cartPageTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "prdr0",
         "prda0",
@@ -129,7 +129,7 @@ export let filters = [{
 }, {
     label: "Order",
     name: "orderTags",
-    status: "notFound",
+    additionalParams: [],
     includedParams: [
         "prdr0",
         "prda0",
@@ -146,7 +146,7 @@ export let filters = [{
 // , {
 //     label: "Estimate identification",
 //     name: "estimateTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "ref",
 //         "estimate=1",
@@ -159,7 +159,7 @@ export let filters = [{
 // }, {
 //     label: "Estimate paiement",
 //     name: "estimateTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "ref",
 //         "estimate=1",
@@ -172,7 +172,7 @@ export let filters = [{
 // }, {
 //     label: "Estimate jpo",
 //     name: "estimateTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "ref",
 //         "estimate=1",
@@ -185,7 +185,7 @@ export let filters = [{
 // }, {
 //     label: "Estimate conference",
 //     name: "estimateTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "ref",
 //         "estimate=1",
@@ -198,7 +198,7 @@ export let filters = [{
 // }, {
 //     label: "Estimate rdv perso",
 //     name: "estimateTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "ref",
 //         "estimate=1",
@@ -211,7 +211,7 @@ export let filters = [{
 // }, {
 //     label: "Estimate rdv immersion",
 //     name: "estimateTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "ref",
 //         "estimate=1",
@@ -224,7 +224,7 @@ export let filters = [{
 // }, {
 //     label: "Estimate ambassadeur",
 //     name: "estimateTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "ref",
 //         "estimate=1",
@@ -237,7 +237,7 @@ export let filters = [{
 // }, {
 //     label: "Estimate rappel",
 //     name: "estimateTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "ref",
 //         "estimate=1",
@@ -250,7 +250,7 @@ export let filters = [{
 // }, {
 //     label: "Generic etape 4",
 //     name: "genericTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "urlp",
 //         "etape4"
@@ -266,7 +266,7 @@ export let filters = [{
 // }, {
 //     label: "Generic etape 3",
 //     name: "genericTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "urlp",
 //         "etape3"
@@ -282,7 +282,7 @@ export let filters = [{
 // }, {
 //     label: "Generic etape 1",
 //     name: "genericTags",
-//     status: "notFound",
+//     additionalParams: [],
 //     includedParams: [
 //         "urlp",
 //         "etape1"

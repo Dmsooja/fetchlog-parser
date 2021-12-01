@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { filters } from '../../filters';
 import { Loader, Dimmer, Card, Icon, Container, Accordion, Divider } from 'semantic-ui-react';
 import CollectorTable from '../CollectorTable';
+import ParamsForm from './ParamsForm';
 
 export default function SiteOutput(props) {
 
     const { loading } = props;
-    // const [isDataReady, setIsDataReady] = useState(false);
     const [activeIndex, setActiveIndex] = useState(null);
 
     return (
@@ -16,12 +16,12 @@ export default function SiteOutput(props) {
                     <Loader
                         active={loading}
                         inverted 
-                        // content={isDataReady === false ? "Preparing data" : "Parsing data"} 
                     />
                 </Dimmer>
                 {Object.entries(props.data).length !== 0 ?
                     <div>
-                        <Card.Group itemsPerRow={3}>
+                        <ParamsForm/>
+                        {/* <Card.Group itemsPerRow={3}>
                             {filters.map((filter, index) =>
                                 <Card key={index}>
                                     <Card.Content>
@@ -30,8 +30,8 @@ export default function SiteOutput(props) {
                                     </Card.Content>
                                 </Card>
                             )}
-                        </Card.Group>
-                        <Divider horizontal>Details</Divider>
+                        </Card.Group> */}
+                        <Divider horizontal></Divider>
                         <Accordion>
                             {filters.map((filter, index) =>
                                 <div key={index}>
