@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { filters } from '../../filters';
 import { Loader, Dimmer, Card, Icon, Container, Accordion, Divider } from 'semantic-ui-react';
 import CollectorTable from '../CollectorTable';
-import ParamsForm from './ParamsForm';
 
-export default function SiteOutput(props) {
+export default function Output(props) {
 
     const { loading } = props;
     const [activeIndex, setActiveIndex] = useState(null);
@@ -20,17 +19,7 @@ export default function SiteOutput(props) {
                 </Dimmer>
                 {Object.entries(props.data).length !== 0 ?
                     <div>
-                        <ParamsForm/>
-                        {/* <Card.Group itemsPerRow={3}>
-                            {filters.map((filter, index) =>
-                                <Card key={index}>
-                                    <Card.Content>
-                                        <Icon size='large' color={Object.keys(props.data).includes(filter.name) ? "green" : "red"} name={Object.keys(props.data).includes(filter.name) ? "check circle outline" : "times circle outline"} />
-                                        {filter.label}
-                                    </Card.Content>
-                                </Card>
-                            )}
-                        </Card.Group> */}
+                        
                         <Divider horizontal></Divider>
                         <Accordion>
                             {filters.map((filter, index) =>

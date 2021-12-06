@@ -1,8 +1,8 @@
 //Tags properties
-export let filters = [{
+export const filters = [{
     label: "Generic",
     name: "genericTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "urlp",
     ],
@@ -17,7 +17,7 @@ export let filters = [{
 }, {
     label: "Product",
     name: "productTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "prdr0",
     ],
@@ -32,7 +32,7 @@ export let filters = [{
 }, {
     label: "Category",
     name: "categoryTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "prdr1",
     ],
@@ -46,7 +46,7 @@ export let filters = [{
 }, {
     label: "Search",
     name: "searchTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "eise",
         "eisd0",
@@ -62,7 +62,7 @@ export let filters = [{
 }, {
     label: "Error",
     name: "errorTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "error=1"
     ],
@@ -75,7 +75,7 @@ export let filters = [{
 }, {
     label: "Estimate",
     name: "estimateTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "ref",
         "estimate=1"
@@ -84,22 +84,10 @@ export let filters = [{
         "scart=1",
         "amount",
     ]
-},/* {
-    label: "Estimate Missing Refs",
-    name: "estimateMissingRef",
-    additionalParams: [],
-    includedParams: [
-        "estimate=1"
-    ],
-    excludedParams: [
-        "ref",
-        "scart=1",
-        "amount",
-    ]
-}, */{
+},{
     label: "Add to cart",
     name: "addToCartTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "prdr0",
         "prda0",
@@ -114,7 +102,7 @@ export let filters = [{
 }, {
     label: "Cart page",
     name: "cartPageTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "prdr0",
         "prda0",
@@ -129,7 +117,7 @@ export let filters = [{
 }, {
     label: "Order",
     name: "orderTags",
-    additionalParams: [],
+    type: "default",
     includedParams: [
         "prdr0",
         "prda0",
@@ -141,159 +129,106 @@ export let filters = [{
         "scart=1",
         "estimate=1"
     ]
+},
+//Custom filters
+{
+    label: "Estimate identification",
+    name: "estimateStep2",
+    type: "custom",
+    includedParams: [
+        "ref",
+        "estimate=1",
+        "etape2"
+    ],
+    excludedParams: [
+        "scart=1",
+        "amount",
+    ]
+}, {
+    label: "Estimate paiement",
+    name: "estimateStep5",
+    type: "custom",
+    includedParams: [
+        "ref",
+        "estimate=1",
+        "etape5"
+    ],
+    excludedParams: [
+        "scart=1",
+        "amount",
+    ]
+}, {
+    label: "Estimate jpo",
+    name: "estimateJpo",
+    type: "custom",
+    includedParams: [
+        "ref",
+        "estimate=1",
+        "porte-ouverte"
+    ],
+    excludedParams: [
+        "scart=1",
+        "amount",
+    ]
+}, 
+//Alerts
+{
+    label: "Estimate Missing Refs",
+    name: "estimateMissingRef",
+    type: "alert",
+    includedParams: [
+        "estimate=1"
+    ],
+    excludedParams: [
+        "ref",
+        "scart=1",
+        "amount",
+    ]
+}, {
+    label: "Ref missing additional params",
+    name: "refMissingParams",
+    type: "alert",
+    includedParams: [
+        "ref",
+    ],
+    excludedParams: [
+        "scart=1",
+        "amount",
+        "estimate=1",
+    ]
+}]
+//add filters
+/*const f = {
+    name: 'monfiltre'
 }
-//INSEEC
-// , {
-//     label: "Estimate identification",
-//     name: "estimateTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "ref",
-//         "estimate=1",
-//         "etape2"
-//     ],
-//     excludedParams: [
-//         "scart=1",
-//         "amount",
-//     ]
+
+export default const augmentedFilter = {
+    toto: {},
+    [f.name]: {...f}
+}*/
+
+
+
+
+//Tags properties previously in alertFilters
+// export let alertFilters = [{
+//     label: "Estimate missing ref",
+//     name: "estimate",
+//     complementaryParams: "ref",
+//     // forbiddenParams: [
+
+//     // ],
+//     additionalParams: []
 // }, {
-//     label: "Estimate paiement",
-//     name: "estimateTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "ref",
-//         "estimate=1",
-//         "etape5"
+//     label: "Ref missing additional parameters",
+//     name: "ref",
+//     complementaryParams: "estimate" || ("amount" && "prdr0" && "prda0" && "prdq0"),
+//     complementaryParams2: [
+//         "estimate",
+//         "amount" && "prdr0" && "prda0" && "prdq0",
 //     ],
-//     excludedParams: [
-//         "scart=1",
-//         "amount",
+//     complementaryParams3: [
+//         ["estimate"],
+//         ["amount", "prdr0", "prda0", "prdq0",]
 //     ]
-// }, {
-//     label: "Estimate jpo",
-//     name: "estimateTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "ref",
-//         "estimate=1",
-//         "porte-ouverte"
-//     ],
-//     excludedParams: [
-//         "scart=1",
-//         "amount",
-//     ]
-// }, {
-//     label: "Estimate conference",
-//     name: "estimateTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "ref",
-//         "estimate=1",
-//         "conference"
-//     ],
-//     excludedParams: [
-//         "scart=1",
-//         "amount",
-//     ]
-// }, {
-//     label: "Estimate rdv perso",
-//     name: "estimateTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "ref",
-//         "estimate=1",
-//         "perso"
-//     ],
-//     excludedParams: [
-//         "scart=1",
-//         "amount",
-//     ]
-// }, {
-//     label: "Estimate rdv immersion",
-//     name: "estimateTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "ref",
-//         "estimate=1",
-//         "immersion"
-//     ],
-//     excludedParams: [
-//         "scart=1",
-//         "amount",
-//     ]
-// }, {
-//     label: "Estimate ambassadeur",
-//     name: "estimateTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "ref",
-//         "estimate=1",
-//         "ambassadeur"
-//     ],
-//     excludedParams: [
-//         "scart=1",
-//         "amount",
-//     ]
-// }, {
-//     label: "Estimate rappel",
-//     name: "estimateTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "ref",
-//         "estimate=1",
-//         "rappel"
-//     ],
-//     excludedParams: [
-//         "scart=1",
-//         "amount",
-//     ]
-// }, {
-//     label: "Generic etape 4",
-//     name: "genericTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "urlp",
-//         "etape4"
-//     ],
-//     excludedParams: [
-//         "prdr0",
-//         "ref",
-//         "scart=1",
-//         "amount",
-//         "eise",
-//         "error"
-//     ]
-// }, {
-//     label: "Generic etape 3",
-//     name: "genericTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "urlp",
-//         "etape3"
-//     ],
-//     excludedParams: [
-//         "prdr0",
-//         "ref",
-//         "scart=1",
-//         "amount",
-//         "eise",
-//         "error"
-//     ]
-// }, {
-//     label: "Generic etape 1",
-//     name: "genericTags",
-//     additionalParams: [],
-//     includedParams: [
-//         "urlp",
-//         "etape1"
-//     ],
-//     excludedParams: [
-//         "prdr0",
-//         "ref",
-//         "scart=1",
-//         "amount",
-//         "eise",
-//         "error"
-//     ]
-// },
-]
+// }]
