@@ -5,9 +5,15 @@ import CollectorTable from '../CollectorTable';
 
 export default function Output(props) {
 
-    const { loading } = props;
+    const { loading, data } = props;
     const [activeIndex, setActiveIndex] = useState(null);
 
+    const defaultTags = filters.filter((d) => d.type === 'default');
+    const customTags = filters.filter((d) => d.type === 'custom');
+    const alert = filters.filter((d) => d.type === 'alert');
+
+    console.log(defaultTags);
+    
     return (
         <div className="output-section">
             <Dimmer.Dimmable as={Container} dimmed={loading}>
@@ -17,7 +23,7 @@ export default function Output(props) {
                         inverted 
                     />
                 </Dimmer>
-                {Object.entries(props.data).length !== 0 ?
+                {Object.entries(data).length !== 0 ?
                     <div>
                         
                         <Divider horizontal></Divider>
@@ -30,12 +36,12 @@ export default function Output(props) {
                                         onClick={() => activeIndex === index ? setActiveIndex(null) : setActiveIndex(index)}
                                     >
                                         <Card.Content>
-                                            <Icon size='large' color={Object.keys(props.data).includes(filter.name) ? "green" : "red"} name={Object.keys(props.data).includes(filter.name) ? "check circle outline" : "times circle outline"} />
+                                            <Icon size='large' color={Object.keys(data).includes(filter.name) ? "green" : "red"} name={Object.keys(data).includes(filter.name) ? "check circle outline" : "times circle outline"} />
                                             {filter.label}
                                         </Card.Content>
                                     </Accordion.Title>
                                     <Accordion.Content active={activeIndex === index}>
-                                        <CollectorTable data={props.data[filter.name]} />
+                                        <CollectorTable data={data[filter.name]} />
                                     </Accordion.Content>
                                 </div>
                             )}
