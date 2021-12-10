@@ -6,7 +6,7 @@ import { Tab } from 'semantic-ui-react';
 import { useState } from 'react';
 
 
-function App() {
+export default function App() {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({});
@@ -18,7 +18,7 @@ function App() {
 
   const panes = [
     { menuItem: 'Site-centric', render: () => <Tab.Pane className={"basic"} attached={false}>
-      <Tags data={data} />
+      <Tags />
       {Object.entries(data).length !== 0 ?
         <Output data={data} loading={loading} />
       : null}
@@ -37,5 +37,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
