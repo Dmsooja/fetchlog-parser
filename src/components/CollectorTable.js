@@ -70,11 +70,11 @@ export default function CollectorTable(props) {
             </Accordion.Content>
           </div>
         )}
-        <Pagination
+        {/* <Pagination
           defaultActivePage={1}
           totalPages={Math.ceil(collectors.params.length / 10)}
           onPageChange={handlePageChange}
-        />
+        /> */}
       </Accordion>
     </div>
   )
