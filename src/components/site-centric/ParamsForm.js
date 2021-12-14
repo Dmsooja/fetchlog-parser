@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Form, Segment, Grid, Popup } from 'semantic-ui-react';
-import { filters } from '../../filters';
+import { Form, Segment, Grid, Popup, Modal, Button, Icon } from 'semantic-ui-react';
 
 export default function ParamsForm({updateFilters}) {
 
+    const [open, setOpen] = useState(false)
     const [isAlert, setIsAlert] = useState(false);
     const [type, setType] = useState('custom');
     const [label, setLabel] = useState('');
@@ -30,9 +30,15 @@ export default function ParamsForm({updateFilters}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         let res = { label, name, type, includedParams, excludedParams }
-        filters.push(res);
-        updateFilters()
-        console.log(filters);
+        setIsAlert(false);
+        setType('');
+        setLabel('');
+        setName('');
+        setExcludedParamsInput('');
+        setIncludedParamsInput('');
+        setIncludedParams([]);
+        setExcludedParams([]);
+        updateFilters(res);
     };
 
     const handleChecked = (e, data) => {
@@ -46,89 +52,108 @@ export default function ParamsForm({updateFilters}) {
 
     return (
         <div>
-            <Grid stackable>
-                <Grid.Column width={10}>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group>
-                            <Popup
-                                trigger={
-                                    <Form.Input
-                                        placeholder='My Tag'
-                                        label='Label'
-                                        name='label'
-                                        value={label}
-                                        onChange={e => setLabel(e.target.value)}
-                                        required
+            <Modal
+                centered={false}
+                open={open}
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                trigger={
+                    <div>
+                        <strong>Create custom tags and alerts : </strong>Complete current tags with additional custom search or alerts
+                        <Button icon><Icon name="add" /></Button>
+                    </div>
+                }
+            >
+                <Modal.Header>Create tag or alert</Modal.Header>
+                <Modal.Content>
+                    <Grid stackable>
+                        <Grid.Column width={10}>
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group>
+                                    <Popup
+                                        trigger={
+                                            <Form.Input
+                                                placeholder='My Tag'
+                                                label='Label'
+                                                name='label'
+                                                value={label}
+                                                onChange={e => setLabel(e.target.value)}
+                                                required
+                                            />
+                                        }
+                                        content='Name the tag to display it'
+                                        position='right center'
                                     />
-                                }
-                                content='Name the tag to display it'
-                                position='right center'
-                            />
-                            <Popup
-                                trigger={
-                                    <Form.Input
-                                        placeholder="myTag"
-                                        label='Name'
-                                        name='name'
-                                        value={name}
-                                        onChange={e => setName(e.target.value)}
-                                        required
-                                    />
+                                    <Popup
+                                        trigger={
+                                            <Form.Input
+                                                placeholder="myTag"
+                                                label='Name'
+                                                name='name'
+                                                value={name}
+                                                onChange={e => setName(e.target.value)}
+                                                required
+                                            />
 
-                                }
-                                content='Tag name ID in camelCase'
-                                position='right center'
-                            />
-                        </Form.Group>
-                        <Popup
-                            trigger={
-                                <Form.TextArea
-                                    placeholder='param1; param=0; ...'
-                                    label='Parameters to include'
-                                    name='includedParams'
-                                    value={includedParamsInput}
-                                    onChange={e => handleIncludedParams(e)}
+                                        }
+                                        content='Tag name ID in camelCase'
+                                        position='right center'
+                                    />
+                                </Form.Group>
+                                <Popup
+                                    trigger={
+                                        <Form.TextArea
+                                            placeholder='param1; param=0; ...'
+                                            label='Parameters to include'
+                                            name='includedParams'
+                                            value={includedParamsInput}
+                                            onChange={e => handleIncludedParams(e)}
+                                        />
+                                    }
+                                    content='Params that should be present in the collector, separated with semicolon'
+                                    position='right center'
                                 />
-                            }
-                            content='Params that should be present in the collector, separated with semicolon'
-                            position='right center'
-                        />
-                        <Popup
-                            trigger={
-                                <Form.TextArea
-                                    placeholder='param1; param=0; ...'
-                                    label='Parameters to exclude'
-                                    name='excludedParams'
-                                    value={excludedParamsInput}
-                                    onChange={e => handleExcludedParams(e)}
+                                <Popup
+                                    trigger={
+                                        <Form.TextArea
+                                            placeholder='param1; param=0; ...'
+                                            label='Parameters to exclude'
+                                            name='excludedParams'
+                                            value={excludedParamsInput}
+                                            onChange={e => handleExcludedParams(e)}
+                                        />
+                                    }
+                                    content='Params that should not be present in the collector, separated with semicolon'
+                                    position='right center'
                                 />
-                            }
-                            content='Params that should not be present in the collector, separated with semicolon'
-                            position='right center'
-                        />
-                        <Popup
-                            trigger={
-                                <Form.Checkbox
-                                    label='Generate an alert'
-                                    name='isAlert'
-                                    value='alert'
-                                    checked={isAlert}
-                                    onClick={(e, data) => handleChecked(e, data)}
+                                <Popup
+                                    trigger={
+                                        <Form.Checkbox
+                                            label='Generate an alert'
+                                            name='isAlert'
+                                            value='alert'
+                                            checked={isAlert}
+                                            onClick={(e, data) => handleChecked(e, data)}
+                                        />
+                                    }
+                                    content='Check the box if this custom tag is an alert'
+                                    position='right center'
                                 />
-                            }
-                            content='Check the box if this custom tag is an alert'
-                            position='right center'
-                        />
-                        <Form.Button content='Submit' />
-                    </Form>
-                </Grid.Column>
-                <Grid.Column width={6}>
-                    <strong>New filter preview</strong>
-                    <Segment>
-                        <pre>{JSON.stringify({ label, name, type, includedParams, excludedParams }, null, 2)}</pre>
-                    </Segment>
-                </Grid.Column>
-            </Grid>
+                                <Form.Button content='Submit and add another' />
+                            </Form>
+                        </Grid.Column>
+                        <Grid.Column width={6}>
+                            <strong>New filter preview</strong>
+                            <Segment>
+                                <pre>{JSON.stringify({ label, name, type, includedParams, excludedParams }, null, 2)}</pre>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button onClick={() => setOpen(false)}>Close</Button>
+                </Modal.Actions>
+            </Modal>
         </div>
     )
 }

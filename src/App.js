@@ -1,4 +1,5 @@
 import './App.css';
+import { filters } from './filters';
 import Upload from './components/Upload';
 import Output from './components/site-centric/Output';
 import Tags from './components/site-centric/Tags';
@@ -8,20 +9,26 @@ import { useState } from 'react';
 
 export default function App() {
 
-  const [loading, setLoading] = useState(false)
+  const [updatedFilters, setUpdatedFilters] = useState(filters);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
-  const callback = (d) => {
+
+  const newFilters = (...f) => {
+    setUpdatedFilters([...updatedFilters, ...f]);
+  }
+
+  const callback = (...d) => {
     setLoading(true);
-    setData(d);
-    setTimeout(() => setLoading(false), 500)
+    setData(...d);
+    setTimeout(() => setLoading(false), 500);
   };
 
   const panes = [
     { menuItem: 'Site-centric', render: () => <Tab.Pane className={"basic"} attached={false}>
-      <Tags />
       {Object.entries(data).length !== 0 ?
-        <Output data={data} loading={loading} />
-      : null}
+        <Output data={data} loading={loading} filters={updatedFilters} />
+        : null}
+      <Tags filters={updatedFilters} newFilters={newFilters} />
     </Tab.Pane> },
     { menuItem: 'Ad-centric', render: () => <Tab.Pane className={"basic"} attached={false}>Tab 2 Content</Tab.Pane> },
   ]

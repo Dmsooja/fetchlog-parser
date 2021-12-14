@@ -197,38 +197,3 @@ export const filters = [{
         "estimate=1",
     ]
 }]
-//add filters
-/*const f = {
-    name: 'monfiltre'
-}
-
-export default const augmentedFilter = {
-    toto: {},
-    [f.name]: {...f}
-}*/
-
-
-
-
-//Tags properties previously in alertFilters
-// export let alertFilters = [{
-//     label: "Estimate missing ref",
-//     name: "estimate",
-//     complementaryParams: "ref",
-//     // forbiddenParams: [
-
-//     // ],
-//     additionalParams: []
-// }, {
-//     label: "Ref missing additional parameters",
-//     name: "ref",
-//     complementaryParams: "estimate" || ("amount" && "prdr0" && "prda0" && "prdq0"),
-//     complementaryParams2: [
-//         "estimate",
-//         "amount" && "prdr0" && "prda0" && "prdq0",
-//     ],
-//     complementaryParams3: [
-//         ["estimate"],
-//         ["amount", "prdr0", "prda0", "prdq0",]
-//     ]
-// }]

@@ -13,14 +13,6 @@ export default function Upload({ callback }) {
 
         let reader = new FileReader();
 
-        reader.onloadstart = (f) => {
-            // console.log("on load start", reader.readyState)
-        }
-
-        reader.onprogress = (f) => {
-            // console.log("on progress", reader.readyState)
-        }
-
         reader.readAsText(f);
 
         reader.onloadend = (f) => {

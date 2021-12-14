@@ -49,8 +49,6 @@ function colFilter() {
     //clear tagsOutput
     for (var tag in tagsOutput) delete tagsOutput[tag];
     //wait for all the lines to be pushed in logs
-    // let result = await separateLines()
-    // console.log(result)
     filters.forEach((tag) => {
         const { name, includedParams, excludedParams } = tag;
         logs.filter((log) => !!log.collector).forEach((log) => { //gets all the truthy log.collector, excludes the undefined
@@ -69,7 +67,7 @@ function colFilter() {
     return tagsOutput
 }
 
-//Get collectors ready for the table + add column input comment , 10 lines max
+//Get collectors ready for the table + add column input comment (10 lines max?)
 export function parseCol(data) {
     // Clear params and values in collectors
     collectors.params.splice(0, collectors.params.length);

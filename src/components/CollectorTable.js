@@ -21,7 +21,6 @@ export default function CollectorTable(props) {
   const handlePageChange = (evt, pageData) => {
     console.log("page number", activePage);
     setActivePage(pageData.activePage);
-    // setApiUrl('https://swapi.co/api/people/?page=' + page.activePage.toString());
     // setPageItems();
   }
 

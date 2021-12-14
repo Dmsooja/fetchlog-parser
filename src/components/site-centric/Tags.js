@@ -1,19 +1,25 @@
-import { filters } from '../../filters';
 import { List, Grid } from 'semantic-ui-react';
 import ParamsForm from './ParamsForm';
 import { useState } from 'react';
 
-export default function Tags() {
-
+export default function Tags({filters, newFilters}) {
+    
     const [data, setData] = useState(filters);
-    const updateFilters = () => {
-        setData(filters);
+
+    const updateFilters = (...res) => {
+        newFilters(...res);
+        setData([...data, ...res]);
     }
 
     return (
         <div className="output-section">
             <Grid divided>
                 <Grid.Row>
+                    <Grid.Column width={12}>
+                        <ParamsForm updateFilters={updateFilters} />
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row columns={3}>
                     <Grid.Column width={4}>
                         <h2>Default tags</h2>
                         <List bulleted>
@@ -24,13 +30,6 @@ export default function Tags() {
                             )}
                         </List>
                     </Grid.Column>
-                    <Grid.Column width={12}>
-                        <h2>Create custom tags and alerts</h2>
-                        <p>Complete current tags with additional custom search or alerts</p>
-                        <ParamsForm updateFilters={updateFilters} />
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row columns={2}>
                     <Grid.Column>
                         <h2>Custom tags</h2>
                         <List bulleted>
