@@ -1,12 +1,12 @@
 import { List, Grid } from 'semantic-ui-react';
-import AddForm from './AddForm';
+import AddForm from '../site/AddForm';
 import { useState } from 'react';
 
 export default function Tags({ filters, newFilters }) {
 
     const [data, setData] = useState(filters);
 
-    const updateAdFilters = (...res) => {
+    const updateFilters = (...res) => {
         newFilters(...res);
         setData([...data, ...res]);
     }
@@ -14,7 +14,7 @@ export default function Tags({ filters, newFilters }) {
     return (
         <div className="ui grid three columns divided">
             <Grid.Row centered>
-                <AddForm updateFilters={updateAdFilters} />
+                <AddForm updateFilters={updateFilters} />
             </Grid.Row>
             <Grid.Row columns={3} divided>
                 <Grid.Column>

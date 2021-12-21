@@ -1,6 +1,6 @@
 
 //Tags properties
-export let filters = [{
+export let filterAds = [{
     label: "Affiliation",
     name: "trackingAffiliation",
     status: "notFound",

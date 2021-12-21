@@ -1,4 +1,5 @@
 import { filters } from './filters'
+import { filterAds } from './filterads'
 
 const logs = []
 
@@ -57,6 +58,20 @@ function colFilter() {
             const isIncludedValid = includedParams.every((includedParam) => queryParams.some(queryParam => queryParam.search(includedParam) !== -1));
             const isExcludedValid = excludedParams.every((excludedParam) => queryParams.every(queryParam => queryParam.search(excludedParam) === -1));
             if (isIncludedValid && isExcludedValid) {
+                //si tagsOutput est undefined ou null créer un nouveau tableau sinon push dans le tableau existant tagOutput[name]
+                !!tagsOutput[name] // si on a déjà un tableau
+                    ? tagsOutput[name].push(log) // on push
+                    : tagsOutput[name] = [log] // sinon on crée;
+            }
+        });
+    });
+    filterAds.forEach((tag) => {
+        const { name, includedParams } = tag;
+        logs.filter((log) => !!log.collector).forEach((log) => { //gets all the truthy log.collector, excludes the undefined
+            // on transforme la chaine en tableau de query params
+            const queryParams = log.collector.split('&');
+            const isIncludedValid = includedParams.every((includedParam) => queryParams.some(queryParam => queryParam.search(includedParam) !== -1));
+            if (isIncludedValid) {
                 //si tagsOutput est undefined ou null créer un nouveau tableau sinon push dans le tableau existant tagOutput[name]
                 !!tagsOutput[name] // si on a déjà un tableau
                     ? tagsOutput[name].push(log) // on push

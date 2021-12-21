@@ -1,8 +1,11 @@
 import './App.css';
 import { filters } from './filters';
+import { filterAds } from './filterads';
 import Upload from './components/Upload';
 import Output from './components/site/Output';
+import OutputAd from './components/ad/Output';
 import Tags from './components/site/Tags';
+import TagsAd from './components/ad/Tags';
 import { Tab, Container } from 'semantic-ui-react';
 import { useState } from 'react';
 
@@ -10,11 +13,15 @@ import { useState } from 'react';
 export default function App() {
 
   const [updatedFilters, setUpdatedFilters] = useState(filters);
+  const [updatedFilterAds, setUpdatedFilterAds] = useState(filterAds);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
 
   const newFilters = (...f) => {
     setUpdatedFilters([...updatedFilters, ...f]);
+  }
+  const newFilterAds = (...f) => {
+    setUpdatedFilterAds([...updatedFilterAds, ...f]);
   }
 
   const callback = (...d) => {
@@ -39,7 +46,10 @@ export default function App() {
       menuItem: 'Ad-centric', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
-            Tab 2 Content
+          <TagsAd filters={updatedFilterAds} newFilters={newFilterAds} />
+            {Object.entries(data).length !== 0 ?
+              <OutputAd data={data} loading={loading} filters={updatedFilterAds} />
+              : null}
           </Container>
         </Tab.Pane>
     },

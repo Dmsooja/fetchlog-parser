@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { filters } from '../filters';
+// import { filters } from '../filters';
 import { Tab, Loader, Dimmer, Card, Icon, Container, Menu, Label } from 'semantic-ui-react';
 import CollectorTable from './CollectorTable';
 
 export default function Output(props) {
 
-    const { loading } = props;
+    const { loading, filters } = props;
     // const [loading, setLoading] = useState(false);
     const [isDataReady, setIsDataReady] = useState(false);
     const [isOutputReady, setIsOutputReady] = useState(false);
