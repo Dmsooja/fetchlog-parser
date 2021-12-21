@@ -1,38 +1,24 @@
 import { useDropzone } from 'react-dropzone';
 import { separateLines, tagsOutput } from '../functions';
-import Output from './Output';
 import { Segment, Message, Icon, Header, Container } from 'semantic-ui-react'
 import { useState } from 'react';
 
 //Trigger csv treatment functions
 
-export default function Upload() {
-    const [tags, setTags] = useState({});
-    const [loading, setLoading] = useState(false)
+export default function Upload({ callback }) {
     const [hidden, setHidden] = useState(true)
 
     const handleChange = (f) => {
-        setLoading(true);
         setHidden(false);
 
         let reader = new FileReader();
 
-        reader.onloadstart = (f) => {
-            // console.log("on load start", reader.readyState)
-        }
-
-        reader.onprogress = (f) => {
-            // console.log("on progress", reader.readyState)
-        }
-
         reader.readAsText(f);
 
         reader.onloadend = (f) => {
-            // console.log("on load end", reader.readyState)
             let res = reader.result
             separateLines(res);
-            setTags(tagsOutput);
-            setLoading(false);
+            callback(tagsOutput)
         }
     }
 
@@ -43,7 +29,7 @@ export default function Upload() {
         acceptedFiles,
     } = useDropzone({
         maxFiles: 1,
-        maxSize: 104857600, // 10485760 pour 10Mo ou 104857600 pour 100Mo
+        maxSize: 1048576000, // 10485760 pour 10Mo, 104857600 pour 100Mo, ou 1048576000 pour 1000Mo
         accept: ".csv",
         onDropAccepted: acceptedFiles => {
             acceptedFiles.forEach(file => {
@@ -102,9 +88,6 @@ export default function Upload() {
                         </Message.Header>
                     </Message>
             </Container>
-            
-            <Output data={ tags } loading={loading} />
-
         </div>
 
     )

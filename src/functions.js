@@ -2,6 +2,11 @@ import { filters } from './filters'
 
 const logs = []
 
+export const collectors = {
+    params : [],
+    values : []
+};
+
 export const tagsOutput = {};
 
 //Separate lines and columns
@@ -44,8 +49,6 @@ function colFilter() {
     //clear tagsOutput
     for (var tag in tagsOutput) delete tagsOutput[tag];
     //wait for all the lines to be pushed in logs
-    // let result = await separateLines()
-    // console.log(result)
     filters.forEach((tag) => {
         const { name, includedParams, excludedParams } = tag;
         logs.filter((log) => !!log.collector).forEach((log) => { //gets all the truthy log.collector, excludes the undefined
@@ -58,13 +61,21 @@ function colFilter() {
                 !!tagsOutput[name] // si on a déjà un tableau
                     ? tagsOutput[name].push(log) // on push
                     : tagsOutput[name] = [log] // sinon on crée;
-                }
-            });
+            }
         });
-        return tagsOutput
-        // Object.entries(tagsOutput).forEach(([key, value]) => console.log(key, value))
+    });
+    return tagsOutput
 }
 
-//Parse data in a table + add column input comment , 10 lines max
+//Get collectors ready for the table + add column input comment (10 lines max?)
+export function parseCol(data) {
+    // Clear params and values in collectors
+    collectors.params.splice(0, collectors.params.length);
+    collectors.values.splice(0, collectors.values.length);
+    const queryParams = data.split('&');
+    queryParams.forEach(qp => collectors.params.push(qp.split("=")[0]));
+    queryParams.forEach(qp => collectors.values.push(qp.split("=")[1]));
+    return collectors
+}
 
-//Export the report or copy the line with comment
+//Caractère interdits : [àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]|\s
