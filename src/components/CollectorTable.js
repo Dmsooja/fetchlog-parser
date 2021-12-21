@@ -5,31 +5,25 @@ import { parseCol, collectors } from '../functions'
 
 export default function CollectorTable(props) {
 
+  const { data } = props;
+
+  // const [activePage, setActivePage] = useState(1);
+  // const [diplayedCols, setDiplayedCols] = useState(2);
+  // const [totalCols, setTotalCols] = useState(data.length)
+  // const [totalPages, setTotalPages] = useState(totalCols / diplayedCols)
+
+  // const handlePageChange = (evt, pageData) => {
+  //   console.log("page number", activePage);
+  //   // setActivePage(pageData.page);
+  // }
+
   const [activeIndex, setActiveIndex] = useState(null);
 
-  // const totalItems = collectors.params.length;
-  // const [pageItems, setPageItems] = useState(0);
-  const pageItems = collectors.params
-  const [activePage, setActivePage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [itemsPerPage] = useState(10);
-
-  const lastItemId = activePage * itemsPerPage;
-  const firstItemId = lastItemId - itemsPerPage;
-  const items = pageItems.slice(firstItemId, lastItemId);
-
-  const handlePageChange = (evt, pageData) => {
-    console.log("page number", activePage);
-    setActivePage(pageData.activePage);
-    // setPageItems();
-  }
-
   function fetchData() {
-    props.data?.forEach(d => {
+    data?.forEach(d => {
       parseCol(d["collector"]);
     });
   }
-
 
   fetchData()
 
@@ -39,7 +33,7 @@ export default function CollectorTable(props) {
   return (
     <div>
       <Accordion fluid exclusive={false}>
-        {props.data?.map((d, index) =>
+        {data?.map((d, index) =>
           <div key={index}>
             <Accordion.Title
               index={index}
@@ -71,7 +65,7 @@ export default function CollectorTable(props) {
         )}
         {/* <Pagination
           defaultActivePage={1}
-          totalPages={Math.ceil(collectors.params.length / 10)}
+          totalPages={totalPages}
           onPageChange={handlePageChange}
         /> */}
       </Accordion>
