@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Loader, Dimmer, Card, Icon, Accordion, Divider, Label, Grid } from 'semantic-ui-react';
+import { Loader, Dimmer, Card, Icon, Accordion, Divider, Label, Grid, Table } from 'semantic-ui-react';
 import CollectorTable from '../CollectorTable';
+import { parseCol } from '../../functions'
 
 export default function Output(props) {
 
@@ -9,10 +10,12 @@ export default function Output(props) {
     const [defaultActiveIndex, setDefaultActiveIndex] = useState(null);
     const [customActiveIndex, setCustomActiveIndex] = useState(null);
     const [alertActiveIndex, setAlertActiveIndex] = useState(null);
+    const [tableActiveIndex, setTableActiveIndex] = useState(null);
+
 
     const defaultTags = filters.filter((d) => d.type === 'default');
     const customTags = filters.filter((d) => d.type === 'custom');
-    const alertTags = filters.filter((d) => d.type === 'alert');  
+    const alertTags = filters.filter((d) => d.type === 'alert');
 
     return (
         <div className="ui grid">
@@ -44,8 +47,23 @@ export default function Output(props) {
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={defaultActiveIndex === index}>
-                                                <CollectorTable data={data[filter.name]} />
-                                                
+                                            <Accordion fluid exclusive={false}>
+                                                    {data[filter.name]?.map((d, index) =>
+                                                        <div key={index}>
+                                                            <Accordion.Title
+                                                                index={index}
+                                                                active={tableActiveIndex === index}
+                                                                onClick={() => tableActiveIndex === index ? setTableActiveIndex(null) : setTableActiveIndex(index)}
+                                                                style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}
+                                                            >
+                                                                {d["collector"]}
+                                                            </Accordion.Title>
+                                                            <Accordion.Content active={tableActiveIndex === index}>
+                                                                <CollectorTable collectorData={parseCol(d["collector"])} />
+                                                            </Accordion.Content>
+                                                        </div>
+                                                    )}
+                                                </Accordion>
                                             </Accordion.Content>
                                         </div>
                                     )}
@@ -71,7 +89,23 @@ export default function Output(props) {
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={customActiveIndex === index}>
-                                                <CollectorTable data={data[filter.name]} />
+                                            <Accordion fluid exclusive={false}>
+                                                    {data[filter.name]?.map((d, index) =>
+                                                        <div key={index}>
+                                                            <Accordion.Title
+                                                                index={index}
+                                                                active={tableActiveIndex === index}
+                                                                onClick={() => tableActiveIndex === index ? setTableActiveIndex(null) : setTableActiveIndex(index)}
+                                                                style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}
+                                                            >
+                                                                {d["collector"]}
+                                                            </Accordion.Title>
+                                                            <Accordion.Content active={tableActiveIndex === index}>
+                                                                <CollectorTable collectorData={parseCol(d["collector"])} />
+                                                            </Accordion.Content>
+                                                        </div>
+                                                    )}
+                                                </Accordion>
                                             </Accordion.Content>
                                         </div>
                                     )}
@@ -93,11 +127,29 @@ export default function Output(props) {
                                                 <Card.Content>
                                                     <Icon size='large' color="orange" name="warning circle" />
                                                     {`${filter.label} `}
-                                                    <Label basic size="mini" color={Object.keys(data).includes(filter.name) ? "green" : "red"}>{Object.keys(data).includes(filter.name) ? data[filter.name].length : 0}</Label>
+                                                    <Label basic size="mini" color={Object.keys(data).includes(filter.name) ? "green" : "red"}>
+                                                        {Object.keys(data).includes(filter.name) ? data[filter.name].length : 0}
+                                                    </Label>
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={alertActiveIndex === index}>
-                                                <CollectorTable data={data[filter.name]} />
+                                                <Accordion fluid exclusive={false}>
+                                                    {data[filter.name]?.map((d, index) =>
+                                                        <div key={index}>
+                                                            <Accordion.Title
+                                                                index={index}
+                                                                active={tableActiveIndex === index}
+                                                                onClick={() => tableActiveIndex === index ? setTableActiveIndex(null) : setTableActiveIndex(index)}
+                                                                style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}
+                                                            >
+                                                                {d["collector"]}
+                                                            </Accordion.Title>
+                                                            <Accordion.Content active={tableActiveIndex === index}>
+                                                                <CollectorTable collectorData={parseCol(d["collector"])} />
+                                                            </Accordion.Content>
+                                                        </div>
+                                                    )}
+                                                </Accordion>
                                             </Accordion.Content>
                                         </div>
                                     )}

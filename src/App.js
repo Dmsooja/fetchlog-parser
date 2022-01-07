@@ -53,14 +53,14 @@ export default function App() {
           </Container>
         </Tab.Pane>
     },
-    {
-      menuItem: 'Custom Tagging plan', render: () =>
-        <Tab.Pane className={"basic"} attached={false}>
-          <Container>
-            Tab 3 Content
-          </Container>
-        </Tab.Pane>
-    },
+    // {
+    //   menuItem: 'Custom Tagging plan', render: () =>
+    //     <Tab.Pane className={"basic"} attached={false}>
+    //       <Container>
+    //         Tab 3 Content
+    //       </Container>
+    //     </Tab.Pane>
+    // },
   ]
 
   return (
