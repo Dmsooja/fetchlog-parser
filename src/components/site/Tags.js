@@ -1,14 +1,16 @@
 import { List, Grid } from 'semantic-ui-react';
 import AddForm from './AddForm';
 import { useState } from 'react';
+import { colFilter } from '../../functions'
 
-export default function Tags({ filters, newFilters }) {
+export default function Tags({ filters, newFilters, newFilteredTags, isLoading }) {
 
     const [data, setData] = useState(filters);
 
     const updateAdFilters = (...res) => {
         newFilters(...res);
         setData([...data, ...res]);
+        newFilteredTags(colFilter());
     }
 
     return (

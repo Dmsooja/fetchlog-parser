@@ -1,14 +1,15 @@
 import { useDropzone } from 'react-dropzone';
-import { separateLines, tagsOutput } from '../functions';
+import { separateLines, colFilter } from '../functions';
 import { Segment, Message, Icon, Header, Container } from 'semantic-ui-react'
 import { useState } from 'react';
 
 //Trigger csv treatment functions
 
-export default function Upload({ callback }) {
+export default function Upload({ filteredTags, isLoading }) {
     const [hidden, setHidden] = useState(true)
 
     const handleChange = (f) => {
+        isLoading(true)
         setHidden(false);
 
         let reader = new FileReader();
@@ -18,7 +19,7 @@ export default function Upload({ callback }) {
         reader.onloadend = (f) => {
             let res = reader.result
             separateLines(res);
-            callback(tagsOutput)
+            filteredTags(colFilter());
         }
     }
 

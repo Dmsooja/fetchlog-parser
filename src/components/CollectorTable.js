@@ -4,7 +4,6 @@ import { Table } from 'semantic-ui-react';
 export default function CollectorTable(props) {
 
   const { collectorData } = props;
-  console.log(collectorData);
 
   return (
     <div>

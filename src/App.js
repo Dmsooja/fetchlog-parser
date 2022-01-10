@@ -23,11 +23,19 @@ export default function App() {
   const newFilterAds = (...f) => {
     setUpdatedFilterAds([...updatedFilterAds, ...f]);
   }
+  
+  const isLoading = (bool) => {
+    setLoading(bool);
+  }
 
-  const callback = (...d) => {
-    setLoading(true);
+  const filteredTags = (...d) => {
     setData(...d);
-    setTimeout(() => setLoading(false), 500);
+    setLoading(false);
+  };
+  
+  const newFilteredTags = (...d) => {
+    setData(...d);
+    setLoading(false);
   };
 
   const panes = [
@@ -35,7 +43,7 @@ export default function App() {
       menuItem: 'Site-centric', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
-            <Tags filters={updatedFilters} newFilters={newFilters} />
+            <Tags filters={updatedFilters} newFilters={newFilters} newFilteredTags={newFilteredTags} isLoading={isLoading}/>
             {Object.entries(data).length !== 0 ?
               <Output data={data} loading={loading} filters={updatedFilters} />
               : null}
@@ -65,7 +73,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Upload callback={callback} />
+      <Upload filteredTags={filteredTags} isLoading={isLoading} />
       <Tab
         menu={{ fluid: true, attached: false, vertical: false, tabular: true }}
         panes={panes}

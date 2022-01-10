@@ -5,10 +5,11 @@ export default function TagsAd({ filters, newFilters }) {
 
     const [data, setData] = useState(filters);
 
-    const updateFilters = (...res) => {
-        newFilters(...res);
-        setData([...data, ...res]);
-    }
+    //Uncomment if a form is created for custom/alerts ad tags
+    // const updateFilters = (...res) => {
+    //     newFilters(...res);
+    //     setData([...data, ...res]);
+    // }
 
     return (
         <div className="ui grid three columns divided">

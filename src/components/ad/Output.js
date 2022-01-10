@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Loader, Dimmer, Card, Icon, Accordion, Divider, Label, Grid } from 'semantic-ui-react';
 import CollectorTable from '../CollectorTable';
+import { parseCol, tagsList } from '../../functions'
 
 export default function OutputAd(props) {
 
     const { loading, data, filters } = props;
 
     const [activeIndex, setActiveIndex] = useState(null);
+    const [tableActiveIndex, setTableActiveIndex] = useState(null);
+
     // const [defaultActiveIndex, setDefaultActiveIndex] = useState(null);
     // const [customActiveIndex, setCustomActiveIndex] = useState(null);
     // const [alertActiveIndex, setAlertActiveIndex] = useState(null);
@@ -41,12 +44,29 @@ export default function OutputAd(props) {
                                                 <Card.Content>
                                                     <Icon size='large' color={Object.keys(data).includes(filter.name) ? "green" : "red"} name={Object.keys(data).includes(filter.name) ? "check circle outline" : "times circle outline"} />
                                                     {`${filter.label} `}
-                                                    <Label basic size="mini" color={Object.keys(data).includes(filter.name) ? "green" : "red"}>{Object.keys(data).includes(filter.name) ? data[filter.name].length : 0}</Label>
+                                                    <Label basic size="mini" color={Object.keys(tagsList).includes(filter.name) ? "green" : "red"}>
+                                                        {Object.keys(tagsList).includes(filter.name) ? tagsList[filter.name].length : 0}
+                                                    </Label>
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={activeIndex === index}>
-                                                <CollectorTable data={data[filter.name]} />
-                                                
+                                            <Accordion fluid exclusive={false}>
+                                                    {data[filter.name]?.map((d, index) =>
+                                                        <div key={index}>
+                                                            <Accordion.Title
+                                                                index={index}
+                                                                active={tableActiveIndex === index}
+                                                                onClick={() => tableActiveIndex === index ? setTableActiveIndex(null) : setTableActiveIndex(index)}
+                                                                style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}
+                                                            >
+                                                                {d["collector"]}
+                                                            </Accordion.Title>
+                                                            <Accordion.Content active={tableActiveIndex === index}>
+                                                                <CollectorTable collectorData={parseCol(d["collector"])} />
+                                                            </Accordion.Content>
+                                                        </div>
+                                                    )}
+                                                </Accordion>
                                             </Accordion.Content>
                                         </div>
                                     )}

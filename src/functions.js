@@ -3,7 +3,8 @@ import { filterAds } from './filterads'
 
 const logs = []
 
-export const tagsOutput = {};
+const tagsOutput = {};
+export const tagsList = {};
 
 //Separate lines and columns
 export function separateLines(text) {
@@ -14,7 +15,7 @@ export function separateLines(text) {
     lines.forEach(line => {
         separateColumns(line)
     });
-    colFilter() // wait until separate columns is done : https://www.delftstack.com/howto/javascript/javascript-wait-for-function-to-finish/
+    // colFilter() // wait until separate columns is done : https://www.delftstack.com/howto/javascript/javascript-wait-for-function-to-finish/
 }
 
 function separateColumns(line) {
@@ -41,22 +42,32 @@ function separateColumns(line) {
 
 
 //Filter collector and push to the right array
-function colFilter() {
-    //clear tagsOutput
+export function colFilter() {
+    //clear tags and tagsOutput
+    for (var tag in tagsList) delete tagsList[tag];
     for (var tag in tagsOutput) delete tagsOutput[tag];
     //wait for all the lines to be pushed in logs
     filters.forEach((tag) => {
         const { name, includedParams, excludedParams } = tag;
         logs.filter((log) => !!log.collector).forEach((log) => { //gets all the truthy log.collector, excludes the undefined
-            // on transforme la chaine en tableau de query params
+            //transform the string into a table of query params
             const queryParams = log.collector.split('&');
             const isIncludedValid = includedParams.every((includedParam) => queryParams.some(queryParam => queryParam.search(includedParam) !== -1));
             const isExcludedValid = excludedParams.every((excludedParam) => queryParams.every(queryParam => queryParam.search(excludedParam) === -1));
             if (isIncludedValid && isExcludedValid) {
-                //si tagsOutput est undefined ou null créer un nouveau tableau sinon push dans le tableau existant tagOutput[name]
-                !!tagsOutput[name] // si on a déjà un tableau
-                    ? tagsOutput[name].push(log) // on push
-                    : tagsOutput[name] = [log] // sinon on crée;
+                //if tagsOutput is undefined or null create a new table
+                //if it exists ans has less than 2 values, push the log
+                if (!!tagsOutput[name]) { // si on a déjà un tableau et qu'il contien moins de 2 valeurs
+                    if (tagsOutput[name].length < 5) {
+                        tagsOutput[name].push(log) // on push
+                    }
+                } else {
+                    tagsOutput[name] = [log] // sinon on crée;
+                }
+
+                !!tagsList[name] ? // si on a déjà un tableau
+                    tagsList[name].push(log) // on push
+                    : tagsList[name] = [log] // sinon on crée;
             }
         });
     });
@@ -67,10 +78,17 @@ function colFilter() {
             const queryParams = log.collector.split('&');
             const isIncludedValid = includedParams.every((includedParam) => queryParams.some(queryParam => queryParam.search(includedParam) !== -1));
             if (isIncludedValid) {
-                //si tagsOutput est undefined ou null créer un nouveau tableau sinon push dans le tableau existant tagOutput[name]
-                !!tagsOutput[name] // si on a déjà un tableau
-                    ? tagsOutput[name].push(log) // on push
-                    : tagsOutput[name] = [log] // sinon on crée;
+                if (!!tagsOutput[name]) { // si on a déjà un tableau et qu'il contien moins de 2 valeurs
+                    if (tagsOutput[name].length < 5) {
+                        tagsOutput[name].push(log) // on push
+                    }
+                } else {
+                    tagsOutput[name] = [log] // sinon on crée;
+                }
+
+                !!tagsList[name] ? // si on a déjà un tableau
+                    tagsList[name].push(log) // on push
+                    : tagsList[name] = [log] // sinon on crée;
             }
         });
     });
@@ -80,9 +98,9 @@ function colFilter() {
 //Get collectors ready for the table + add column input comment (10 lines max?)
 export function parseCol(data) {
     const collectors = {
-        collector : [],
-        params : [],
-        values : []
+        collector: [],
+        params: [],
+        values: []
     };
     // Clear params and values in collectors
     collectors.collector.splice(0, collectors.collector.length);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Loader, Dimmer, Card, Icon, Accordion, Divider, Label, Grid, Table } from 'semantic-ui-react';
 import CollectorTable from '../CollectorTable';
-import { parseCol } from '../../functions'
+import { parseCol, tagsList } from '../../functions'
 
 export default function Output(props) {
 
@@ -11,7 +11,6 @@ export default function Output(props) {
     const [customActiveIndex, setCustomActiveIndex] = useState(null);
     const [alertActiveIndex, setAlertActiveIndex] = useState(null);
     const [tableActiveIndex, setTableActiveIndex] = useState(null);
-
 
     const defaultTags = filters.filter((d) => d.type === 'default');
     const customTags = filters.filter((d) => d.type === 'custom');
@@ -43,7 +42,9 @@ export default function Output(props) {
                                                 <Card.Content>
                                                     <Icon size='large' color={Object.keys(data).includes(filter.name) ? "green" : "red"} name={Object.keys(data).includes(filter.name) ? "check circle outline" : "times circle outline"} />
                                                     {`${filter.label} `}
-                                                    <Label basic size="mini" color={Object.keys(data).includes(filter.name) ? "green" : "red"}>{Object.keys(data).includes(filter.name) ? data[filter.name].length : 0}</Label>
+                                                    <Label basic size="mini" color={Object.keys(tagsList).includes(filter.name) ? "green" : "red"}>
+                                                        {Object.keys(tagsList).includes(filter.name) ? tagsList[filter.name].length : 0}
+                                                    </Label>
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={defaultActiveIndex === index}>
@@ -85,7 +86,9 @@ export default function Output(props) {
                                                 <Card.Content>
                                                     <Icon size='large' color={Object.keys(data).includes(filter.name) ? "green" : "red"} name={Object.keys(data).includes(filter.name) ? "check circle outline" : "times circle outline"} />
                                                     {`${filter.label} `}
-                                                    <Label basic size="mini" color={Object.keys(data).includes(filter.name) ? "green" : "red"}>{Object.keys(data).includes(filter.name) ? data[filter.name].length : 0}</Label>
+                                                    <Label basic size="mini" color={Object.keys(tagsList).includes(filter.name) ? "green" : "red"}>
+                                                        {Object.keys(tagsList).includes(filter.name) ? tagsList[filter.name].length : 0}
+                                                    </Label>
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={customActiveIndex === index}>
@@ -127,8 +130,8 @@ export default function Output(props) {
                                                 <Card.Content>
                                                     <Icon size='large' color="orange" name="warning circle" />
                                                     {`${filter.label} `}
-                                                    <Label basic size="mini" color={Object.keys(data).includes(filter.name) ? "green" : "red"}>
-                                                        {Object.keys(data).includes(filter.name) ? data[filter.name].length : 0}
+                                                    <Label basic size="mini" color={Object.keys(tagsList).includes(filter.name) ? "green" : "red"}>
+                                                        {Object.keys(tagsList).includes(filter.name) ? tagsList[filter.name].length : 0}
                                                     </Label>
                                                 </Card.Content>
                                             </Accordion.Title>
