@@ -20,7 +20,7 @@ export function separateLines(text) {
 
 function separateColumns(line) {
 
-    const reg = new RegExp(/( )|"(.*)"/g);
+    const reg = new RegExp(/( )|"(.*)"/g); // ancienne regex ne fonctionne pas avec le test place des tendances new RegExp(/( )|"(.*)"|( \\)/g) (\\"")
     const headers = [
         "epoch",
         "type_log",
@@ -45,7 +45,7 @@ function separateColumns(line) {
 export function colFilter() {
     //clear tags and tagsOutput
     for (var tag in tagsList) delete tagsList[tag];
-    for (var tag in tagsOutput) delete tagsOutput[tag];
+    for (var tagOutput in tagsOutput) delete tagsOutput[tagOutput];
     //wait for all the lines to be pushed in logs
     filters.forEach((tag) => {
         const { name, includedParams, excludedParams } = tag;

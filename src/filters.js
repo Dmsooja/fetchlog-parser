@@ -130,70 +130,71 @@ export const filters = [{
         "estimate=1"
     ]
 },
-//Custom filters
-{
-    label: "Estimate identification",
-    name: "estimateStep2",
-    type: "custom",
-    includedParams: [
-        "ref",
-        "estimate=1",
-        "etape2"
-    ],
-    excludedParams: [
-        "scart=1",
-        "amount",
-    ]
-}, {
-    label: "Estimate paiement",
-    name: "estimateStep5",
-    type: "custom",
-    includedParams: [
-        "ref",
-        "estimate=1",
-        "etape5"
-    ],
-    excludedParams: [
-        "scart=1",
-        "amount",
-    ]
-}, {
-    label: "Estimate jpo",
-    name: "estimateJpo",
-    type: "custom",
-    includedParams: [
-        "ref",
-        "estimate=1",
-        "porte-ouverte"
-    ],
-    excludedParams: [
-        "scart=1",
-        "amount",
-    ]
-}, 
-//Alerts
-{
-    label: "Estimate Missing Refs",
-    name: "estimateMissingRef",
-    type: "alert",
-    includedParams: [
-        "estimate=1"
-    ],
-    excludedParams: [
-        "ref",
-        "scart=1",
-        "amount",
-    ]
-}, {
-    label: "Ref missing additional params",
-    name: "refMissingParams",
-    type: "alert",
-    includedParams: [
-        "ref",
-    ],
-    excludedParams: [
-        "scart=1",
-        "amount",
-        "estimate=1",
-    ]
-}]
+//Test Custom filters
+// {
+//     label: "Estimate identification",
+//     name: "estimateStep2",
+//     type: "custom",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "etape2"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate paiement",
+//     name: "estimateStep5",
+//     type: "custom",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "etape5"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Estimate jpo",
+//     name: "estimateJpo",
+//     type: "custom",
+//     includedParams: [
+//         "ref",
+//         "estimate=1",
+//         "porte-ouverte"
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//     ]
+// }, 
+//Test Alerts
+// {
+//     label: "Estimate Missing Refs",
+//     name: "estimateMissingRef",
+//     type: "alert",
+//     includedParams: [
+//         "estimate=1"
+//     ],
+//     excludedParams: [
+//         "ref",
+//         "scart=1",
+//         "amount",
+//     ]
+// }, {
+//     label: "Ref missing additional params",
+//     name: "refMissingParams",
+//     type: "alert",
+//     includedParams: [
+//         "ref",
+//     ],
+//     excludedParams: [
+//         "scart=1",
+//         "amount",
+//         "estimate=1",
+//     ]
+// }
+]
