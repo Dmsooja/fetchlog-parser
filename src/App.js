@@ -61,14 +61,34 @@ export default function App() {
           </Container>
         </Tab.Pane>
     },
-    // {
-    //   menuItem: 'Custom Tagging plan', render: () =>
-    //     <Tab.Pane className={"basic"} attached={false}>
-    //       <Container>
-    //         Tab 3 Content
-    //       </Container>
-    //     </Tab.Pane>
-    // },
+    {
+      menuItem: 'Upload tagging plan - Filters CSV', render: () =>
+        <Tab.Pane className={"basic"} attached={false}>
+          <Container>
+            Tutorial + Download example csv of tagging plan
+            <br/>Upload CSV filters for site : type, label, name, includedParams and excludedParams
+            <br/>Upload CSV filters for ad : type, label, name, includedParams
+            <br/>Edit current filters (default or imported or custom and alert)
+          </Container>
+        </Tab.Pane>
+    },
+    {
+      menuItem: 'IP counter', render: () =>
+        <Tab.Pane className={"basic"} attached={false}>
+          <Container>
+            Show the most present IPs and the 5 full fetchlog lines of them + counter
+          </Container>
+        </Tab.Pane>
+    },
+    {
+      menuItem: 'Recap', render: () =>
+        <Tab.Pane className={"basic"} attached={false}>
+          <Container>
+            Display a Recap: Site, Ads, IPs ?, searched tags + their lines
+            <br/> Download the recap
+          </Container>
+        </Tab.Pane>
+    },
   ]
 
   return (
