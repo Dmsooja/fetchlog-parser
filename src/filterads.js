@@ -3,7 +3,6 @@
 export let filterAds = [{
     label: "Affiliation",
     name: "trackingAffiliation",
-    status: "notFound",
     includedParams: [
         "eaf-publisher",
         "eaf-name",
@@ -13,7 +12,6 @@ export let filterAds = [{
 }, {
     label: "Epub",
     name: "trackingEpub",
-    status: "notFound",
     includedParams: [
         "ead-publisher",
         "ead-name",
@@ -24,7 +22,6 @@ export let filterAds = [{
 }, {
     label: "Comparateur",
     name: "trackingComparateur",
-    status: "notFound",
     includedParams: [
         "etf-publisher",
         "etf-name"
@@ -32,7 +29,6 @@ export let filterAds = [{
 }, {
     label: "Mailing",
     name: "trackingmailing",
-    status: "notFound",
     includedParams: [
         "eml-publisher",
         "eml-name"
@@ -40,7 +36,6 @@ export let filterAds = [{
 }, {
     label: "Social",
     name: "trackingSocial",
-    status: "notFound",
     includedParams: [
         "esc-publisher",
         "esc-name",
@@ -51,7 +46,6 @@ export let filterAds = [{
 }, {
     label: "Lien sponsorisés Google",
     name: "tackingLienSponsorisesGoogle",
-    status: "notFound",
     includedParams: [
         "esl-k=",
         "|a",
@@ -60,14 +54,12 @@ export let filterAds = [{
 }, /*{
     label: "Lien sponsorisés Bing",
     name: "tackingLienSponsorisesBing",
-    status: "notFound",
     includedParams: [
         "esl-k",
     ]
 },*/ {
     label: "Partenariat",
     name: "trackingPartenariat",
-    status: "notFound",
     includedParams: [
         "ept-publisher",
         "ept-name"

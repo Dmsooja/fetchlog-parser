@@ -17,6 +17,24 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
 
+  const csvHeadersSite = [
+    "Tag ID (label)",
+    "Name",
+    "Type",
+    "Included Parameters (comma separated strings)",
+    "Excluded Parameters (comma separated strings)",
+  ];
+
+  const csvHeadersAds = [
+    "Tag ID (label)",
+    "Name",
+    "Tag category",
+    "Included Parameters",
+  ];
+
+  console.log(updatedFilters);
+  console.log(updatedFilterAds);
+
   const newFilters = (...f) => {
     setUpdatedFilters([...updatedFilters, ...f]);
   }
