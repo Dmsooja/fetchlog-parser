@@ -28,7 +28,7 @@ export default function App() {
   const csvHeadersAds = [
     "Tag ID (label)",
     "Name",
-    "Tag category",
+    "Type",
     "Included Parameters",
   ];
 
@@ -65,6 +65,13 @@ export default function App() {
             {Object.entries(data).length !== 0 ?
               <Output data={data} loading={loading} filters={updatedFilters} />
               : null}
+          </Container>
+        </Tab.Pane>
+    },{
+      menuItem: 'Documentation', render: () =>
+        <Tab.Pane className={"basic"} attached={false}>
+          <Container>
+            <p>Documentation de l'app</p>
           </Container>
         </Tab.Pane>
     },

@@ -1,5 +1,9 @@
 
 //Tags properties
+/**
+ * Filters are defining the conditions for matching tags in the CSV
+ * Ad filters only have params included and none excluded beacause of the specificity of ad trackings (e.g ead, eaf, esc ...)
+ */
 export let filterAds = [{
     label: "Affiliation",
     name: "trackingAffiliation",
