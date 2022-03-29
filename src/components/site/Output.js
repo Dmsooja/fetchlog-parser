@@ -20,7 +20,7 @@ export default function Output(props) {
         <div className="ui grid">
             <Grid.Row>
                 <Grid.Column>
-                    <h2>Results</h2>
+                    <h2>Tag Results</h2>
                     <Dimmer.Dimmable dimmed={loading}>
                         <Dimmer inverted active={loading} >
                             <Loader

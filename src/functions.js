@@ -6,7 +6,11 @@ const logs = []
 const tagsOutput = {};
 export const tagsList = {};
 
-//Separate lines and columns
+/**
+ * 
+ * @function
+ * 
+ */
 export function separateLines(text) {
     const reg = new RegExp(/\n/g);
     let lines = text.split(reg)

@@ -1,8 +1,8 @@
 
-//Tags properties
+// Tags properties
 export let filterAds = [{
     label: "Affiliation",
-    name: "trackingAffiliation",
+    name: "affiliationTracking",
     status: "notFound",
     includedParams: [
         "eaf-publisher",
@@ -12,7 +12,7 @@ export let filterAds = [{
     ]
 }, {
     label: "Epub",
-    name: "trackingEpub",
+    name: "epubTracking",
     status: "notFound",
     includedParams: [
         "ead-publisher",
@@ -22,8 +22,8 @@ export let filterAds = [{
         "ead-creativetype"
     ]
 }, {
-    label: "Comparateur",
-    name: "trackingComparateur",
+    label: "Comparator",
+    name: "comparatorTracking",
     status: "notFound",
     includedParams: [
         "etf-publisher",
@@ -31,7 +31,7 @@ export let filterAds = [{
     ]
 }, {
     label: "Mailing",
-    name: "trackingmailing",
+    name: "mailingTracking",
     status: "notFound",
     includedParams: [
         "eml-publisher",
@@ -39,7 +39,7 @@ export let filterAds = [{
     ]
 }, {
     label: "Social",
-    name: "trackingSocial",
+    name: "socialTracking",
     status: "notFound",
     includedParams: [
         "esc-publisher",
@@ -49,8 +49,8 @@ export let filterAds = [{
         "esc-creativetype"
     ]
 }, {
-    label: "Lien sponsorisés Google",
-    name: "tackingLienSponsorisesGoogle",
+    label: "Sponsored Links",
+    name: "sponsoredLinksTracking",
     status: "notFound",
     includedParams: [
         "esl-k=",
@@ -65,8 +65,8 @@ export let filterAds = [{
         "esl-k",
     ]
 },*/ {
-    label: "Partenariat",
-    name: "trackingPartenariat",
+    label: "Partnerships",
+    name: "partnershipsTracking",
     status: "notFound",
     includedParams: [
         "ept-publisher",

@@ -22,7 +22,7 @@ export default function OutputAd(props) {
         <div className="ui grid">
             <Grid.Row>
                 <Grid.Column>
-                    <h2>Results</h2>
+                    <h2>Ad Results</h2>
                     <Dimmer.Dimmable dimmed={loading}>
                         <Dimmer inverted active={loading} >
                             <Loader

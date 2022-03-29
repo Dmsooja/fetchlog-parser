@@ -1,18 +1,22 @@
-import { useDropzone } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone'; // See documentation at https://react-dropzone.js.org/#src
 import { separateLines, colFilter } from '../functions';
-import { Segment, Message, Icon, Header, Container } from 'semantic-ui-react'
+import { Segment, Message, Icon, Header, Container } from 'semantic-ui-react' // See documentation at https://react.semantic-ui.com/
 import { useState } from 'react';
 
-//Trigger csv treatment functions
-
+// Trigger csv treatment functions
+// Upload component, props filteredTags and isLoading communicate data to the parent component App.js
 export default function Upload({ filteredTags, isLoading }) {
+    
+    // Hide the info box
     const [hidden, setHidden] = useState(true)
 
+    // Set isLoading to true and show info box
+    // Read the file and use separateLines function to start the csv data extraction
     const handleChange = (f) => {
         isLoading(true)
         setHidden(false);
-
-        let reader = new FileReader();
+    
+        let reader = new FileReader(); // See https://developer.mozilla.org/fr/docs/Web/API/FileReader
 
         reader.readAsText(f);
 
@@ -23,14 +27,10 @@ export default function Upload({ filteredTags, isLoading }) {
         }
     }
 
-    const {
-        getRootProps,
-        getInputProps,
-        fileRejections,
-        acceptedFiles,
-    } = useDropzone({
+    // Initialize useDropzone
+    const { getRootProps, getInputProps, fileRejections, acceptedFiles } = useDropzone({
         maxFiles: 1,
-        maxSize: 1048576000, // 10485760 pour 10Mo, 104857600 pour 100Mo, ou 1048576000 pour 1000Mo
+        maxSize: 1048576000, // 10485760 for 10Mo, 104857600 for 100Mo, or 1048576000 for 1000Mo
         accept: ".csv",
         onDropAccepted: acceptedFiles => {
             acceptedFiles.forEach(file => {
