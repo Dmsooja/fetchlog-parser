@@ -1,24 +1,27 @@
 import { filters } from './filters'
 import { filterAds } from './filterads'
 
-const logs = []
+// Initialize variables
+const logs = []; // Array of objects. Each line from the csv is an object with column headers as properties
 
-const tagsOutput = {};
-export const tagsList = {};
+const tagsOutput = {}; //
+
+export const tagsList = {}; // TagList object "export" makes tagsList importable in other components
 
 /**
- * 
- * @function
- * 
+ * Separate csv data by newline (\n regex)
+ * @param {String | ArrayBuffer} text - The csv data
  */
+
 export function separateLines(text) {
     const reg = new RegExp(/\n/g);
     let lines = text.split(reg)
-    // Clear logs
+    // Clear logs array
     logs.splice(0, logs.length);
     lines.forEach(line => {
         separateColumns(line)
     });
+    // console.log(logs)
     // colFilter() // wait until separate columns is done : https://www.delftstack.com/howto/javascript/javascript-wait-for-function-to-finish/
 }
 
@@ -48,30 +51,36 @@ function separateColumns(line) {
 //Filter collector and push to the right array
 export function colFilter() {
     //clear tags and tagsOutput
-    for (var tag in tagsList) delete tagsList[tag];
+    for (var tag in tagsList) delete tagsList[tag]; 
     for (var tagOutput in tagsOutput) delete tagsOutput[tagOutput];
-    //wait for all the lines to be pushed in logs
+
+    // Wait for all the lines to be pushed in logs
+
+    // For all tags in filters
     filters.forEach((tag) => {
         const { name, includedParams, excludedParams } = tag;
-        logs.filter((log) => !!log.collector).forEach((log) => { //gets all the truthy log.collector, excludes the undefined
-            //transform the string into a table of query params
+        
+        // Get all the truthy log.collector, excludes the undefined
+        logs.filter((log) => !!log.collector).forEach((log) => {
+            // Transform the string into a table of query params
             const queryParams = log.collector.split('&');
             const isIncludedValid = includedParams.every((includedParam) => queryParams.some(queryParam => queryParam.search(includedParam) !== -1));
             const isExcludedValid = excludedParams.every((excludedParam) => queryParams.every(queryParam => queryParam.search(excludedParam) === -1));
-            if (isIncludedValid && isExcludedValid) {
-                //if tagsOutput is undefined or null create a new table
-                //if it exists ans has less than 2 values, push the log
-                if (!!tagsOutput[name]) { // si on a déjà un tableau et qu'il contien moins de 2 valeurs
+            
+            // if isIncludedValid and isExcludedValid exist
+            if (isIncludedValid && isExcludedValid) {    
+                // if tagsOutput exists ans has less than 5 values, push the log            
+                if (!!tagsOutput[name]) {
                     if (tagsOutput[name].length < 5) {
-                        tagsOutput[name].push(log) // on push
+                        tagsOutput[name].push(log);
                     }
-                } else {
-                    tagsOutput[name] = [log] // sinon on crée;
+                } 
+                // if tagsOutput is undefined or null create a new table
+                else {
+                    tagsOutput[name] = [log];
                 }
-
-                !!tagsList[name] ? // si on a déjà un tableau
-                    tagsList[name].push(log) // on push
-                    : tagsList[name] = [log] // sinon on crée;
+                // if the tag array already exist, push the log or else create an array for this tag
+                !!tagsList[name] ? tagsList[name].push(log) : tagsList[name] = [log];
             }
         });
     });
