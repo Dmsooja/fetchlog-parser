@@ -18,6 +18,7 @@ export default function OutputAd(props) {
     // const customTags = filters.filter((d) => d.type === 'custom');
     // const alertTags = filters.filter((d) => d.type === 'alert');  
 
+    console.log(data)
     return (
         <div className="ui grid">
             <Grid.Row>

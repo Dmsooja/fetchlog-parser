@@ -1,5 +1,9 @@
 
-// Tags properties
+//Tags properties
+/**
+ * Filters are defining the conditions for matching tags in the CSV
+ * Ad filters only have params included and none excluded beacause of the specificity of ad trackings (e.g ead, eaf, esc ...)
+ */
 export let filterAds = [{
     label: "Affiliation",
     name: "affiliationTracking",
@@ -60,7 +64,6 @@ export let filterAds = [{
 }, /*{
     label: "Lien sponsorisés Bing",
     name: "tackingLienSponsorisesBing",
-    status: "notFound",
     includedParams: [
         "esl-k",
     ]

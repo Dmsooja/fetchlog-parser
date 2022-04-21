@@ -17,7 +17,25 @@ export default function App() {
   const [loading, setLoading] = useState(false); // Set the loading to true or false, initial state is false
   const [data, setData] = useState({}); // Initialise data as an empty object, update data every time logs csv are decrypted
 
+  const csvHeadersSite = [
+    "Tag ID (label)",
+    "Name",
+    "Type",
+    "Included Parameters (comma separated strings)",
+    "Excluded Parameters (comma separated strings)",
+  ];
+
+  const csvHeadersAds = [
+    "Tag ID (label)",
+    "Name",
+    "Type",
+    "Included Parameters",
+  ];
+
   // Update site filters
+  console.log(updatedFilters);
+  console.log(updatedFilterAds);
+
   const newFilters = (...f) => {
     setUpdatedFilters([...updatedFilters, ...f]);
   }
@@ -55,6 +73,13 @@ export default function App() {
             {Object.entries(data).length !== 0 ?
               <Output data={data} loading={loading} filters={updatedFilters} />
               : null}
+          </Container>
+        </Tab.Pane>
+    },{
+      menuItem: 'Documentation', render: () =>
+        <Tab.Pane className={"basic"} attached={false}>
+          <Container>
+            <p>Documentation de l'app</p>
           </Container>
         </Tab.Pane>
     },
