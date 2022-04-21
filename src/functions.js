@@ -56,6 +56,7 @@ export function colFilter() {
 
     // Wait for all the lines to be pushed in logs
 
+    console.log(filters)
     // For all tags in filters
     filters.forEach((tag) => {
         const { name, includedParams, excludedParams } = tag;
