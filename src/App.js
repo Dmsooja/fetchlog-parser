@@ -8,6 +8,7 @@ import Tags from './components/site/Tags'; // Site tags grid component
 import TagsAd from './components/ad/Tags'; // Ad tags grid component
 import { Tab, Container } from 'semantic-ui-react'; // UI components from Semantic-UI library, see : https://react.semantic-ui.com/
 import { useState } from 'react';
+import { colFilter } from './functions/filters';
 
 // Global application, handles all data flows between components
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
 
   const newFilters = (...f) => {
     setUpdatedFilters([...updatedFilters, ...f]);
+    colFilter(updatedFilters);
   }
 
   // Update ad filters
@@ -133,7 +135,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Upload filteredTags={filteredTags} isLoading={isLoading} />
+      <Upload filteredTags={filteredTags} isLoading={isLoading} filters={updatedFilters} />
       <Tab
         menu={{ fluid: false, attached: false, vertical: false, tabular: true }} // Tab links configuration, see https://react.semantic-ui.com/modules/tab/
         panes={panes} // Display the list of tabs

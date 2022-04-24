@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Loader, Dimmer, Card, Icon, Accordion, Divider, Label, Grid } from 'semantic-ui-react';
 import CollectorTable from '../CollectorTable';
-import { parseCol, tagsList } from '../../functions'
+import { parseCol } from '../../functions/collectors'
+import { tagsList } from '../../functions/filters';
+
 
 export default function Output(props) {
 

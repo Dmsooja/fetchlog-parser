@@ -1,11 +1,12 @@
 import { useDropzone } from 'react-dropzone'; // See documentation at https://react-dropzone.js.org/#src
-import { separateLines, colFilter } from '../functions';
+import { separateLines } from '../functions/files';
+import { colFilter } from '../functions/filters';
 import { Segment, Message, Icon, Header, Container } from 'semantic-ui-react' // See documentation at https://react.semantic-ui.com/
 import { useState } from 'react';
 
 // Trigger csv treatment functions
 // Upload component, props filteredTags and isLoading communicate data to the parent component App.js
-export default function Upload({ filteredTags, isLoading }) {
+export default function Upload({ filteredTags, isLoading, filters }) {
     
     // Hide the info box
     const [hidden, setHidden] = useState(true)
@@ -23,7 +24,7 @@ export default function Upload({ filteredTags, isLoading }) {
         reader.onloadend = (f) => {
             let res = reader.result
             separateLines(res);
-            filteredTags(colFilter());
+            filteredTags(colFilter(filters));
         }
     }
 
