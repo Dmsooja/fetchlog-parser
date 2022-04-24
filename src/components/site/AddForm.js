@@ -41,6 +41,21 @@ export default function AddForm({ updateFilters }) {
         updateFilters(res);
     };
 
+    const handleSubmitClose = (e) => {
+        e.preventDefault();
+        let res = { label, name, type, includedParams, excludedParams }
+        setIsAlert(false);
+        setType('');
+        setLabel('');
+        setName('');
+        setExcludedParamsInput('');
+        setIncludedParamsInput('');
+        setIncludedParams([]);
+        setExcludedParams([]);
+        updateFilters(res);
+        setOpen(false);
+    }
+
     const handleChecked = (e, data) => {
         setIsAlert(!isAlert)
         if (isAlert) {
@@ -151,7 +166,8 @@ export default function AddForm({ updateFilters }) {
                     </Grid>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button onClick={() => setOpen(false)}>Close</Button>
+                    <Button primary onClick={() => handleSubmitClose}>Save and close</Button>
+                    <Button onClick={() => setOpen(false)}>Cancel</Button>
                 </Modal.Actions>
             </Modal>
         </div>
