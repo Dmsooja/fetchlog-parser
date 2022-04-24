@@ -1,6 +1,6 @@
-import './App.css'; // style sheet
-import { filters } from './filters'; // Site filters
-import { filterAds } from './filterads'; // Ad filters
+import './App.css'; // Style sheet
+import { filters } from './store/filters'; // Site filters
+import { filterAds } from './store/filterads'; // Ad filters
 import Upload from './components/Upload'; // Upload component
 import Output from './components/site/Output'; // Site output component
 import OutputAd from './components/ad/Output'; // Ad output component
@@ -8,63 +8,71 @@ import Tags from './components/site/Tags'; // Site tags grid component
 import TagsAd from './components/ad/Tags'; // Ad tags grid component
 import { Tab, Container } from 'semantic-ui-react'; // UI components from Semantic-UI library, see : https://react.semantic-ui.com/
 import { useState } from 'react';
-import { colFilter } from './functions/filters';
+import { colFilter } from './functions/filters'; // Function to match collectors with the tags
 
-// Global application, handles all data flows between components
+/**
+ * Global application, handles all data flows between components
+ * @returns Upload component and tabs
+ */
+
 export default function App() {
 
-  const [updatedFilters, setUpdatedFilters] = useState(filters); // Set the new site filters list after a new site filter is created, initial state is the imported filters from ./filters
-  const [updatedFilterAds, setUpdatedFilterAds] = useState(filterAds); // Set the new ad filters filters list after a new ad filter is created, initial state is the imported filters from ./filtersads
-  const [loading, setLoading] = useState(false); // Set the loading to true or false, initial state is false
-  const [data, setData] = useState({}); // Initialise data as an empty object, update data every time logs csv are decrypted
+  // Set the new site filters list after a new site filter is created, initial state is the imported filters from ./filters
+  const [updatedFilters, setUpdatedFilters] = useState(filters);
 
-  const csvHeadersSite = [
-    "Tag ID (label)",
-    "Name",
-    "Type",
-    "Included Parameters (comma separated strings)",
-    "Excluded Parameters (comma separated strings)",
-  ];
+  // Set the new ad filters filters list after a new ad filter is created, initial state is the imported filters from ./filtersads
+  const [updatedFilterAds, setUpdatedFilterAds] = useState(filterAds);
 
-  const csvHeadersAds = [
-    "Tag ID (label)",
-    "Name",
-    "Type",
-    "Included Parameters",
-  ];
+  // Set the loading to true or false, initial state is false
+  const [loading, setLoading] = useState(false);
 
-  // Update site filters
-  console.log(updatedFilters);
-  console.log(updatedFilterAds);
+  // Initialise data as an empty object, update data every time logs csv are decrypted
+  const [data, setData] = useState({});
 
+  /**
+   * Update site filters by adding the new filter
+   * @param  {...any} f - The additional filter
+   */
   const newFilters = (...f) => {
     setUpdatedFilters([...updatedFilters, ...f]);
-    colFilter(updatedFilters);
+    // setData(colFilter(updatedFilters));
   }
 
-  // Update ad filters
+  /**
+   * Update ad filters by adding the new filter
+   * @param  {...any} f - The additional filter
+   */
   const newFilterAds = (...f) => {
     setUpdatedFilterAds([...updatedFilterAds, ...f]);
   }
 
-  // Update loading state to true or false
+  /**
+   * Loading state
+   * @param {*} bool - true to activate loading or false to deactivate loading
+   */
   const isLoading = (bool) => {
     setLoading(bool);
   }
 
-  // Initialize data and set loading to false
+  /**
+   * Initialize tags and set loading to false
+   * @param  {...any} d - New tag array with corresponding collectors
+   */
   const filteredTags = (...d) => {
     setData(...d);
     setLoading(false);
   };
 
-  // Update data and set loading to false
+  /**
+   * Update data and set loading to false
+   * @param  {...any} d - The new tags and their corresponding collectors
+   */
   const newFilteredTags = (...d) => {
-    setData(...d);
+    setData(...data, ...d);
     setLoading(false);
   };
 
-  // List the displayed tabs
+  // List of tabs
   const panes = [
     {
       menuItem: 'Site-centric', render: () =>
@@ -77,7 +85,7 @@ export default function App() {
               : null}
           </Container>
         </Tab.Pane>
-    },{
+    }, {
       menuItem: 'Documentation', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
@@ -121,13 +129,12 @@ export default function App() {
       menuItem: 'Recap', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
-            {/* If data object is not empty show Outputs */}
-            {Object.entries(data).length !== 0 ?
+            {Object.entries(data).length !== 0 ? //If data object is not empty show site and ad Outputs, if there is no data, show nothing
               <div>
                 <Output data={data} loading={loading} filters={updatedFilters} />
                 <OutputAd data={data} loading={loading} filters={updatedFilterAds} />
               </div>
-            : null}
+              : null} 
           </Container>
         </Tab.Pane>
     },

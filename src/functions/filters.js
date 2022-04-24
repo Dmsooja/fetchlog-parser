@@ -1,5 +1,5 @@
 // import { filters } from './filters';
-import { filterAds } from '../filterads';
+import { filterAds } from '../store/filterads';
 import { logs } from './files';
 
 const tagsOutput = {};
@@ -10,20 +10,21 @@ const tagsOutput = {};
 export const tagsList = {};
 
 
-//Filter collector and push to the right array
+/**
+ * Filter collectors and store each collector to its matching tag's array
+ * @param {*} filters - The existing filters (original, custom and alert)
+ * @returns tagsOutput - An object that contains tags as arrays and their matching collectors
+ */
 export function colFilter(filters) {
-  //clear tags and tagsOutput
+  // Clear tags and tagsOutput
   for (var tag in tagsList) delete tagsList[tag];
   for (var tagOutput in tagsOutput) delete tagsOutput[tagOutput];
 
-  // Wait for all the lines to be pushed in logs
-
-  console.log(filters)
   // For all tags in filters
   filters.forEach((tag) => {
     const { name, includedParams, excludedParams } = tag;
 
-    // Get all the truthy log.collector, excludes the undefined
+    // Get all the truthy log.collector (exclude the undefined)
     logs.filter((log) => !!log.collector).forEach((log) => {
       // Transform the string into a table of query params
       const queryParams = log.collector.split('&');
@@ -48,24 +49,22 @@ export function colFilter(filters) {
     });
   });
 
+  // Same as above : For all tags in filtersAds create an array and push all the matching collectors (filtered by included and excluded parameters)
   filterAds.forEach((tag) => {
     const { name, includedParams } = tag;
-    logs.filter((log) => !!log.collector).forEach((log) => { //gets all the truthy log.collector, excludes the undefined
-      // on transforme la chaine en tableau de query params
+    logs.filter((log) => !!log.collector).forEach((log) => {
       const queryParams = log.collector.split('&');
       const isIncludedValid = includedParams.every((includedParam) => queryParams.some(queryParam => queryParam.search(includedParam) !== -1));
       if (isIncludedValid) {
-        if (!!tagsOutput[name]) { // si on a déjà un tableau et qu'il contien moins de 2 valeurs
+        if (!!tagsOutput[name]) {
           if (tagsOutput[name].length < 5) {
-            tagsOutput[name].push(log) // on push
+            tagsOutput[name].push(log)
           }
         } else {
-          tagsOutput[name] = [log] // sinon on crée;
+          tagsOutput[name] = [log];
         }
-
-        !!tagsList[name] ? // si on a déjà un tableau
-          tagsList[name].push(log) // on push
-          : tagsList[name] = [log] // sinon on crée;
+        // if the tag array already exist, push the log or else create an array for this tag
+        !!tagsList[name] ? tagsList[name].push(log) : tagsList[name] = [log];
       }
     });
   });
