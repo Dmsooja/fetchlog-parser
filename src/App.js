@@ -6,6 +6,7 @@ import Output from './components/site/Output'; // Site output component
 import OutputAd from './components/ad/Output'; // Ad output component
 import Tags from './components/site/Tags'; // Site tags grid component
 import TagsAd from './components/ad/Tags'; // Ad tags grid component
+import IpCounter from './components/IpCounter'; // Ad tags grid component
 import { Tab, Container } from 'semantic-ui-react'; // UI components from Semantic-UI library, see : https://react.semantic-ui.com/
 import { useState } from 'react';
 import { colFilter } from './functions/filters'; // Function to match collectors with the tags
@@ -117,14 +118,14 @@ export default function App() {
     //       </Container>
     //     </Tab.Pane>
     // },
-    // {
-    //   menuItem: 'IP counter', render: () =>
-    //     <Tab.Pane className={"basic"} attached={false}>
-    //       <Container>
-    //         Show the most present IPs and the 5 full fetchlog lines of them + counter
-    //       </Container>
-    //     </Tab.Pane>
-    // },
+    {
+      menuItem: 'IP counter', render: () =>
+        <Tab.Pane className={"basic"} attached={false}>
+          <Container>
+            <IpCounter />
+          </Container>
+        </Tab.Pane>
+    },
     {
       menuItem: 'Recap', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
