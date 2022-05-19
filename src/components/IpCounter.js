@@ -83,14 +83,14 @@ export default function IpCounter() {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell
-                                width={1}
+                                width={3}
                             // sorted={column === 'count' ? direction : null}
                             // onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'count' })}
                             >
                                 %
                             </Table.HeaderCell>
                             <Table.HeaderCell
-                                width={2}
+                                width={3}
                             // sorted={column === 'count' ? direction : null}
                             // onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'count' })}
                             >
@@ -105,9 +105,9 @@ export default function IpCounter() {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {current && current.map(({ ip, count }, index) => (
+                        {current && current.map(({ ip, count, percentage }, index) => (
                             <Table.Row key={index}>
-                                <Table.Cell>{count}</Table.Cell>
+                                <Table.Cell>{parseFloat(percentage*100).toFixed(2)}%</Table.Cell>
                                 <Table.Cell>{count}</Table.Cell>
                                 <Table.Cell>{ip}</Table.Cell>
                             </Table.Row>

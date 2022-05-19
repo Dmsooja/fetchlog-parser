@@ -93,7 +93,8 @@ function getIpList() {
 
     const ipData = { // contains objects for each IP as {"ip" : string, "count": number}
       ip : log.ip,
-      count : counts[log.ip]
+      count : counts[log.ip],
+      percentage : counts[log.ip]/logs.length
     };
 
     ipList.push(ipData);
