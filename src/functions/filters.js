@@ -2,6 +2,9 @@
 import { filterAds } from '../store/filterads';
 import { logs } from './files';
 
+/**
+ * @todo Write the documentation
+ */
 const tagsOutput = {};
 
 /**
@@ -16,9 +19,9 @@ export const tagsList = {};
  * @returns tagsOutput - An object that contains tags as arrays and their matching collectors
  */
 export function colFilter(filters) {
-  // Clear tags and tagsOutput
-  for (var tag in tagsList) delete tagsList[tag];
-  for (var tagOutput in tagsOutput) delete tagsOutput[tagOutput];
+  
+  for (var tag in tagsList) delete tagsList[tag]; // Clear tagsList object
+  for (var tagOutput in tagsOutput) delete tagsOutput[tagOutput]; // Clear tagsOutput object
 
   // For all tags in filters
   filters.forEach((tag) => {

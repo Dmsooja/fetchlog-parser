@@ -1,7 +1,7 @@
 import { Table, Grid } from 'semantic-ui-react';
 import _ from 'lodash';
 import { useState, useReducer } from 'react';
-import { logs, getIpList } from '../functions/files';
+import { ipList } from '../functions/files';
 
 
 
@@ -29,7 +29,7 @@ function exampleReducer(state, action) {
 
 export default function IpCounter() {
 
-    const ipData = getIpList(logs);
+    const ipData = ipList;
 
     const [state, dispatch] = useReducer(exampleReducer, {
         column: null,
