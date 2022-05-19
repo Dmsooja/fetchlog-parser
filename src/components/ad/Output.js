@@ -34,6 +34,7 @@ export default function OutputAd(props) {
                         {Object.entries(data).length !== 0 ?
                             <div>
                                 <Divider horizontal>Ad tags</Divider>
+                                {console.log('Start Collector parsing for AD table')}
                                 <Accordion>
                                     {filters.map((filter, index) =>
                                         <div key={index}>
@@ -51,7 +52,7 @@ export default function OutputAd(props) {
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={activeIndex === index}>
-                                            <Accordion fluid exclusive={false}>
+                                                <Accordion fluid exclusive={false}>
                                                     {data[filter.name]?.map((d, index) =>
                                                         <div key={index}>
                                                             <Accordion.Title
@@ -72,6 +73,7 @@ export default function OutputAd(props) {
                                         </div>
                                     )}
                                 </Accordion>
+                                {console.log('Finish Collector parsing for AD table')}
                             </div>
                             : null
                         }

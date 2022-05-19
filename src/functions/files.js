@@ -35,12 +35,18 @@ export function separateLines(text) {
 
   const reg = new RegExp(/\n/g);
   let lines = text.split(reg);
+
+  console.log('Finish separating csv lines');
   
   logs.splice(0, logs.length); // Clear logs array
-
+  
+  console.log('Start separating csv columns');
   lines.forEach(line => {
     separateColumns(line)
   });
+  console.log('Finish separating csv columns');
+
+  getIpList();
 }
 
 /**
@@ -48,7 +54,6 @@ export function separateLines(text) {
  * @param {string} line - the CSV log line
  */
 function separateColumns(line) {
-  console.log('Start separating csv columns');
 
   const reg = new RegExp(/( )|"(.*)"/g); // ancienne regex ne fonctionne pas avec le test place des tendances new RegExp(/( )|"(.*)"|( \\)/g) (\\"")
   const headers = [
@@ -70,15 +75,13 @@ function separateColumns(line) {
   let res = line.split(reg).filter(item => !!(item?.trim())).reduce((acc, curr, idx) => ({ ...acc, [headers[idx]]: curr }), {});
 
   logs.push(res);
-
-  getIpList();
 }
 
 /**
  * Store all IPs and count their occurrences in ipList array
  */
 function getIpList() {
-  console.log('Starting to count IP');
+  console.log('Start IP List');
 
   ipList.splice(0, ipList.length); // Clear ipList array
 
@@ -96,5 +99,5 @@ function getIpList() {
     ipList.push(ipData);
   });
 
-  console.log('IPs count finished');
+  console.log('Finish IPs List');
 }

@@ -1,4 +1,5 @@
 // import { filters } from './filters';
+import { startCase } from 'lodash';
 import { filterAds } from '../store/filterads';
 import { logs } from './files';
 
@@ -19,7 +20,8 @@ export const tagsList = {};
  * @returns tagsOutput - An object that contains tags as arrays and their matching collectors
  */
 export function colFilter(filters) {
-  
+  console.log('Start Collector filtering');
+
   for (var tag in tagsList) delete tagsList[tag]; // Clear tagsList object
   for (var tagOutput in tagsOutput) delete tagsOutput[tagOutput]; // Clear tagsOutput object
 
@@ -51,6 +53,7 @@ export function colFilter(filters) {
       }
     });
   });
+  console.log('Start Collector Ad filtering');
 
   // Same as above : For all tags in filtersAds create an array and push all the matching collectors (filtered by included and excluded parameters)
   filterAds.forEach((tag) => {
@@ -71,5 +74,8 @@ export function colFilter(filters) {
       }
     });
   });
+
+  console.log('Finish Collector filtering');
+
   return tagsOutput
 }

@@ -4,6 +4,7 @@
  */
 
 export function parseCol(data) {
+
     const collectors = {
         collector: [],
         params: [],
@@ -20,6 +21,7 @@ export function parseCol(data) {
     collectors.collector.push(data);
     queryParams.forEach(qp => collectors.params.push(qp.split("=")[0]));
     queryParams.forEach(qp => collectors.values.push(qp.split("=")[1]));
+
     return collectors
 }
 

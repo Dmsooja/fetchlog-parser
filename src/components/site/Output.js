@@ -33,6 +33,7 @@ export default function Output(props) {
                         {Object.entries(data).length !== 0 ?
                             <div>
                                 <Divider horizontal>Default tags</Divider>
+                                {console.log('Start Collector parsing for table')}
                                 <Accordion>
                                     {defaultTags.map((filter, index) =>
                                         <div key={index}>
@@ -50,7 +51,7 @@ export default function Output(props) {
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={defaultActiveIndex === index}>
-                                            <Accordion fluid exclusive={false}>
+                                                <Accordion fluid exclusive={false}>
                                                     {data[filter.name]?.map((d, index) =>
                                                         <div key={index}>
                                                             <Accordion.Title
@@ -71,12 +72,14 @@ export default function Output(props) {
                                         </div>
                                     )}
                                 </Accordion>
+                                {console.log('Finish Collector parsing for table')}
                             </div>
                             : null
                         }
                         {Object.entries(data).length !== 0 ?
                             <div>
                                 <Divider horizontal>Custom tags</Divider>
+                                {console.log('Start Collector parsing for table')}
                                 <Accordion>
                                     {customTags.map((filter, index) =>
                                         <div key={index}>
@@ -94,7 +97,7 @@ export default function Output(props) {
                                                 </Card.Content>
                                             </Accordion.Title>
                                             <Accordion.Content active={customActiveIndex === index}>
-                                            <Accordion fluid exclusive={false}>
+                                                <Accordion fluid exclusive={false}>
                                                     {data[filter.name]?.map((d, index) =>
                                                         <div key={index}>
                                                             <Accordion.Title
@@ -115,12 +118,14 @@ export default function Output(props) {
                                         </div>
                                     )}
                                 </Accordion>
+                                {console.log('Finish Collector parsing for table')}
                             </div>
                             : null
                         }
                         {Object.entries(data).length !== 0 ?
                             <div>
                                 <Divider horizontal>Alerts</Divider>
+                                {console.log('Start Collector parsing for table')}
                                 <Accordion>
                                     {alertTags.map((filter, index) =>
                                         <div key={index}>
@@ -159,6 +164,7 @@ export default function Output(props) {
                                         </div>
                                     )}
                                 </Accordion>
+                                {console.log('Finish Collector parsing for table')}
                             </div>
                             : null
                         }

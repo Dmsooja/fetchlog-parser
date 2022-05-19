@@ -76,6 +76,13 @@ export default function App() {
   // List of tabs
   const panes = [
     {
+      menuItem: 'Documentation', render: () =>
+        <Tab.Pane className={"basic"} attached={false}>
+          <Container>
+            <p>Documentation de l'app</p>
+          </Container>
+        </Tab.Pane>
+    },{
       menuItem: 'Site-centric', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
@@ -86,15 +93,7 @@ export default function App() {
               : null}
           </Container>
         </Tab.Pane>
-    }, {
-      menuItem: 'Documentation', render: () =>
-        <Tab.Pane className={"basic"} attached={false}>
-          <Container>
-            <p>Documentation de l'app</p>
-          </Container>
-        </Tab.Pane>
-    },
-    {
+    },{
       menuItem: 'Ad-centric', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
@@ -125,8 +124,7 @@ export default function App() {
             <IpCounter />
           </Container>
         </Tab.Pane>
-    },
-    {
+    },{
       menuItem: 'Recap', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>

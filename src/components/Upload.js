@@ -4,7 +4,14 @@ import { colFilter } from '../functions/filters';
 import { Segment, Message, Icon, Header, Container } from 'semantic-ui-react' // See documentation at https://react.semantic-ui.com/
 import { useState } from 'react';
 
-// Trigger csv treatment functions
+/**
+ * Upload component
+ * Triggers csv treatment with @function separateLines
+ * Triggers collector filtering with @function colFilter
+ * @param {object} filteredTags - Object of tags arrays 
+ * @param {*} isLoading 
+ * @param {*} filters 
+ */
 // Upload component, props filteredTags and isLoading communicate data to the parent component App.js
 export default function Upload({ filteredTags, isLoading, filters }) {
     
