@@ -84,20 +84,20 @@ export default function IpCounter() {
                         <Table.Row>
                             <Table.HeaderCell
                                 width={3}
-                            // sorted={column === 'count' ? direction : null}
+                            sorted={column === 'percentage' ? direction : null}
                             // onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'count' })}
                             >
                                 %
                             </Table.HeaderCell>
                             <Table.HeaderCell
                                 width={3}
-                            // sorted={column === 'count' ? direction : null}
+                            sorted={column === 'count' ? direction : null}
                             // onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'count' })}
                             >
                                 Occurences
                             </Table.HeaderCell>
                             <Table.HeaderCell
-                            // sorted={column === 'ip' ? direction : null}
+                            sorted={column === 'ip' ? direction : null}
                             // onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'ip' })}
                             >
                                 IP
