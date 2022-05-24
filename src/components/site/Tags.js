@@ -3,7 +3,7 @@ import AddForm from './AddForm';
 import { useState } from 'react';
 import { colFilter } from '../../functions/filters';
 
-export default function Tags({ filters, newFilters, newFilteredTags, isLoading }) {
+export default function Tags({ filters, newFilters, newFilteredTags }) {
 
     const [data, setData] = useState(filters);
 

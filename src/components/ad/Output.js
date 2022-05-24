@@ -24,13 +24,7 @@ export default function OutputAd(props) {
             <Grid.Row>
                 <Grid.Column>
                     <h2>Ad Results</h2>
-                    <Dimmer.Dimmable dimmed={loading}>
-                        <Dimmer inverted active={loading} >
-                            <Loader
-                                active={loading}
-                                inverted
-                            />
-                        </Dimmer>
+                    
                         {Object.entries(data).length !== 0 ?
                             <div>
                                 <Divider horizontal>Ad tags</Divider>
@@ -77,7 +71,6 @@ export default function OutputAd(props) {
                             </div>
                             : null
                         }
-                    </Dimmer.Dimmable>
                 </Grid.Column>
             </Grid.Row>
         </div >

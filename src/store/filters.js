@@ -1,4 +1,12 @@
 //Tags properties
+/**
+ * filters - The default filters with included and excluded parameters.
+ * @param {string} label - Name of the filter that will be displayed
+ * @param {string} name - ID/Name of the filter. In camelCase.
+ * @param {string} type - Type of the filter.
+ * @param {array} includedParams - Array of strings to be included in the query.
+ * @param {array} excludedParams - Array of strings to be excluded in the query.
+ */
 export const filters = [{
     label: "Generic",
     name: "genericTags",

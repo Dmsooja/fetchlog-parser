@@ -76,6 +76,5 @@ export function colFilter(filters) {
   });
 
   console.log('Finish Collector filtering');
-
-  return tagsOutput
+  return tagsOutput;
 }

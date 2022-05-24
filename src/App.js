@@ -7,7 +7,7 @@ import OutputAd from './components/ad/Output'; // Ad output component
 import Tags from './components/site/Tags'; // Site tags grid component
 import TagsAd from './components/ad/Tags'; // Ad tags grid component
 import IpCounter from './components/IpCounter'; // Ad tags grid component
-import { Tab, Container } from 'semantic-ui-react'; // UI components from Semantic-UI library, see : https://react.semantic-ui.com/
+import { Tab, Container, Dimmer, Loader } from 'semantic-ui-react'; // UI components from Semantic-UI library, see : https://react.semantic-ui.com/
 import { useState } from 'react';
 import { colFilter } from './functions/filters'; // Function to match collectors with the tags
 
@@ -60,6 +60,7 @@ export default function App() {
    * @param  {...any} d - New tag array with corresponding collectors
    */
   const filteredTags = (...d) => {
+    console.log("fiteredTags funtion");
     setData(...d);
     setLoading(false);
   };
@@ -69,6 +70,7 @@ export default function App() {
    * @param  {...any} d - The new tags and their corresponding collectors
    */
   const newFilteredTags = (...d) => {
+    console.log("newFilteredTags funtion");
     setData(...data, ...d);
     setLoading(false);
   };
@@ -82,7 +84,7 @@ export default function App() {
             <p>Documentation de l'app</p>
           </Container>
         </Tab.Pane>
-    },{
+    }, {
       menuItem: 'Site-centric', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
@@ -93,7 +95,7 @@ export default function App() {
               : null}
           </Container>
         </Tab.Pane>
-    },{
+    }, {
       menuItem: 'Ad-centric', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
@@ -124,7 +126,7 @@ export default function App() {
             <IpCounter />
           </Container>
         </Tab.Pane>
-    },{
+    }, {
       menuItem: 'Recap', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
@@ -133,7 +135,7 @@ export default function App() {
                 <Output data={data} loading={loading} filters={updatedFilters} />
                 <OutputAd data={data} loading={loading} filters={updatedFilterAds} />
               </div>
-              : null} 
+              : null}
           </Container>
         </Tab.Pane>
     },
@@ -142,10 +144,18 @@ export default function App() {
   return (
     <div className="App">
       <Upload filteredTags={filteredTags} isLoading={isLoading} filters={updatedFilters} />
-      <Tab
-        menu={{ fluid: false, attached: false, vertical: false, tabular: true }} // Tab links configuration, see https://react.semantic-ui.com/modules/tab/
-        panes={panes} // Display the list of tabs
-      />
+      <Dimmer.Dimmable dimmed={loading}>
+        <Dimmer inverted active={loading} >
+          <Loader
+            active={loading}
+            inverted
+          />
+        </Dimmer>
+          <Tab
+            menu={{ fluid: false, attached: false, vertical: false, tabular: true }} // Tab links configuration, see https://react.semantic-ui.com/modules/tab/
+            panes={panes} // Display the list of tabs
+          />
+      </Dimmer.Dimmable>
     </div>
   );
 }

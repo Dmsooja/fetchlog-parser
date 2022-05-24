@@ -8,11 +8,14 @@ import { useState } from 'react';
  * Upload component
  * Triggers csv treatment with @function separateLines
  * Triggers collector filtering with @function colFilter
- * @param {object} filteredTags - Object of tags arrays 
- * @param {*} isLoading 
- * @param {*} filters 
+ * The props are callbacks for the parent component App.js
+ * 
+ * @param {object} filteredTags - Object of tags arrays. This data is transmitted toi the parent component App.js as callback
+ * @param {boolean} isLoading - Whether the loader is active or not. This data is transmitted toi the parent component App.js as callback
+ * @param {array} filters - Array containing the default filters as objects.
+ * 
  */
-// Upload component, props filteredTags and isLoading communicate data to the parent component App.js
+
 export default function Upload({ filteredTags, isLoading, filters }) {
     
     // Hide the info box
@@ -21,7 +24,7 @@ export default function Upload({ filteredTags, isLoading, filters }) {
     // Set isLoading to true and show info box
     // Read the file and use separateLines function to start the csv data extraction
     const handleChange = (f) => {
-        isLoading(true)
+        isLoading(true);
         setHidden(false);
     
         let reader = new FileReader(); // See https://developer.mozilla.org/fr/docs/Web/API/FileReader
