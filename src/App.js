@@ -6,11 +6,12 @@ import Output from './components/site/Output'; // Site output component
 import OutputAd from './components/ad/Output'; // Ad output component
 import Tags from './components/site/Tags'; // Site tags grid component
 import TagsAd from './components/ad/Tags'; // Ad tags grid component
-import IpCounter from './components/IpCounter'; // Ad tags grid component
+import IpCounter from './components/ip/IpCounter'; // Ad tags grid component
 import { Tab, Container, Dimmer, Loader } from 'semantic-ui-react'; // UI components from Semantic-UI library, see : https://react.semantic-ui.com/
 import { useState } from 'react';
 import { colFilter } from './functions/filters'; // Function to match collectors with the tags
 import Documentation from './components/Documentation';
+import IpTable from './components/ip/IpTable';
 
 /**
  * Global application, handles all data flows between components
@@ -125,7 +126,8 @@ export default function App() {
       menuItem: 'IP counter', render: () =>
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
-            <IpCounter />
+            {/* <IpCounter /> */}
+            <IpTable />
           </Container>
         </Tab.Pane>
     }, 

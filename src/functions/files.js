@@ -37,15 +37,15 @@ export function separateLines(text) {
   let lines = text.split(reg);
 
   console.log('Finish separating csv lines');
-  
+
   logs.splice(0, logs.length); // Clear logs array
-  
+
   console.log('Start separating csv columns');
   lines.forEach(line => {
     separateColumns(line)
   });
   console.log('Finish separating csv columns');
-
+  console.log("log lenght dans separate lines", logs.length);
   getIpList();
 }
 
@@ -85,20 +85,26 @@ function getIpList() {
 
   ipList.splice(0, ipList.length); // Clear ipList array
 
-  const counts = {};
-  
-  logs.filter((log) => !!log.ip).forEach((log) => { // Filter all the truthy log.ip
-    counts[log.ip] = counts[log.ip] ? counts[log.ip] +1 // If log.ip exist in counts object, increment its count by 1
-    : 1; // Else, log.ip doesn't already exist in counts, set its count to 1
+  const counter = logs.filter((log) => !!log.ip).reduce(function (accumulator, currentLog) {
+    const ip = currentLog.ip;
+    accumulator[ip] = (accumulator[ip] || 0) + 1;
+    return accumulator;
+  }, {});
 
-    const ipData = { // contains objects for each IP as {"ip" : string, "count": number}
-      ip : log.ip,
-      count : counts[log.ip],
-      percentage : counts[log.ip]/logs.length
+  var idx = 0
+
+  for (var ip in counter) {
+    const data = {
+      id: idx,
+      ip: ip,
+      count: counter[ip],
+      percentage: parseFloat(counter[ip] / logs.length * 100).toFixed(2)
     };
 
-    ipList.push(ipData);
-  });
-
+    ipList.push(data);
+    idx ++;
+  }
+  console.log("log lenght dans IPLIST", logs.length);
+  console.log(" dans IPLIST", ipList);
   console.log('Finish IPs List');
 }
