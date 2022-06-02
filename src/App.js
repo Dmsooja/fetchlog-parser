@@ -10,6 +10,7 @@ import IpCounter from './components/IpCounter'; // Ad tags grid component
 import { Tab, Container, Dimmer, Loader } from 'semantic-ui-react'; // UI components from Semantic-UI library, see : https://react.semantic-ui.com/
 import { useState } from 'react';
 import { colFilter } from './functions/filters'; // Function to match collectors with the tags
+import Documentation from './components/Documentation';
 
 /**
  * Global application, handles all data flows between components
@@ -82,6 +83,7 @@ export default function App() {
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
             <p>Documentation de l'app</p>
+            <Documentation />
           </Container>
         </Tab.Pane>
     }, {
@@ -126,19 +128,20 @@ export default function App() {
             <IpCounter />
           </Container>
         </Tab.Pane>
-    }, {
-      menuItem: 'Recap', render: () =>
-        <Tab.Pane className={"basic"} attached={false}>
-          <Container>
-            {Object.entries(data).length !== 0 ? //If data object is not empty show site and ad Outputs, if there is no data, show nothing
-              <div>
-                <Output data={data} loading={loading} filters={updatedFilters} />
-                <OutputAd data={data} loading={loading} filters={updatedFilterAds} />
-              </div>
-              : null}
-          </Container>
-        </Tab.Pane>
-    },
+    }, 
+    // {
+    //   menuItem: 'Recap', render: () =>
+    //     <Tab.Pane className={"basic"} attached={false}>
+    //       <Container>
+    //         {Object.entries(data).length !== 0 ? //If data object is not empty show site and ad Outputs, if there is no data, show nothing
+    //           <div>
+    //             <Output data={data} loading={loading} filters={updatedFilters} />
+    //             <OutputAd data={data} loading={loading} filters={updatedFilterAds} />
+    //           </div>
+    //           : null}
+    //       </Container>
+    //     </Tab.Pane>
+    // },
   ]
 
   return (
