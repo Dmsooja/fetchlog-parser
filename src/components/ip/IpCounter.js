@@ -1,7 +1,7 @@
 import { Table, Grid } from 'semantic-ui-react';
 import _ from 'lodash';
 import { useState, useReducer } from 'react';
-import { ipList } from '../functions/files';
+import { ipList } from '../../functions/files';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 
@@ -107,7 +107,7 @@ export default function IpCounter() {
                     <Table.Body>
                         {current && current.map(({ ip, count, percentage }, index) => (
                             <Table.Row key={index}>
-                                <Table.Cell>{parseFloat(percentage*100).toFixed(2)}%</Table.Cell>
+                                <Table.Cell>{percentage}%</Table.Cell>
                                 <Table.Cell>{count}</Table.Cell>
                                 <Table.Cell>{ip}</Table.Cell>
                             </Table.Row>
