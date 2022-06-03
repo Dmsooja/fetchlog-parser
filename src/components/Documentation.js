@@ -1,8 +1,9 @@
 export default function Documentation() {
 
     return (
-        <div className="ui grid">
+        <div>
             <h2>How to use&nbsp;:</h2>
+            <br/>
             <ol>
                 <li>
                     <p>Unzip the fetchlog output</p>
@@ -11,6 +12,7 @@ export default function Documentation() {
                     <p>Upload the extracted file using the ICON area (drop the csv file or browse your files)</p>
                 </li>
             </ol>
+            <br />
             <h2>The tabs&nbsp;:</h2>
             <h3>The Site-centric Tab</h3>
             <p>The existing tag filters are diplayed on the top of the tab.</p>
@@ -20,7 +22,8 @@ export default function Documentation() {
                     <p>Generic</p>
                 </li>
             </ol>
-            {/* <pre>{{
+            <pre>{`
+            {
                 label: "Generic",
                 name: "genericTags",
                 type: "default",
@@ -35,14 +38,16 @@ export default function Documentation() {
                     "eise",
                     "error"
                 ]
-            }}</pre>
+            }`}
+            </pre>
             <ol start="2">
                 <li>
                     <p>Product</p>
                 </li>
             </ol>
 
-            <pre> {{
+            <pre> {`
+            {
                 label: "Product",
                 name: "productTags",
                 type: "default",
@@ -57,13 +62,14 @@ export default function Documentation() {
                     "estimate=1",
                     "error"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="3">
                 <li>
                     <p>Category</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Category",
                 name: "categoryTags",
                 type: "default",
@@ -77,13 +83,14 @@ export default function Documentation() {
                     "estimate=1",
                     "error"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="4">
                 <li>
                     <p>Search</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Search",
                 name: "searchTags",
                 type: "default",
@@ -99,13 +106,14 @@ export default function Documentation() {
                     "amount",
                     "estimate=1"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="5">
                 <li>
                     <p>Error</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Error",
                 name: "errorTags",
                 type: "default",
@@ -118,13 +126,14 @@ export default function Documentation() {
                     "amount",
                     "estimate=1"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="6">
                 <li>
                     <p>Estimate</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Estimate",
                 name: "estimateTags",
                 type: "default",
@@ -136,13 +145,14 @@ export default function Documentation() {
                     "scart=1",
                     "amount",
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="7">
                 <li>
                     <p>Add to cart</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Add to cart",
                 name: "addToCartTags",
                 type: "default",
@@ -157,13 +167,14 @@ export default function Documentation() {
                     "amount",
                     "ref"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="8">
                 <li>
                     <p>Cart page</p>
                 </li>
             </ol>
-            <pre> {{
+            <pre> {`
+            {
                 label: "Cart page",
                 name: "cartPageTags",
                 type: "default",
@@ -178,13 +189,14 @@ export default function Documentation() {
                     "amount",
                     "ref"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="9">
                 <li>
                     <p>Order</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Order",
                 name: "orderTags",
                 type: "default",
@@ -199,11 +211,12 @@ export default function Documentation() {
                     "scart=1",
                     "estimate=1"
                 ]
-            }}</pre>
+            }`}</pre>
             <p>&nbsp;</p>
-            <p>Search additional tags</p>
-            <p>You can create additional tags to search for in the logs.</p>
-            <p>They must have a name (to display), an ID and at least 1 parameter (included and/or excluded).</p>
+            <h4>Search additional tags</h4>
+            <p>Coming soon</p>
+            {/* <p>You can create additional tags to search for in the logs.</p>
+            <p>They must have a name (to display), an ID and at least 1 parameter (included and/or excluded).</p> */}
             <h3>The Ad-centric Tab</h3>
             <p>The existing ad tracking filters are diplayed on the top of the tab.</p>
             <p>Default tags are the filters that natively exist. Below the following tags and their filters&nbsp;:</p>
@@ -212,7 +225,8 @@ export default function Documentation() {
                     <p>Affiliation</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Affiliation",
                 name: "affiliationTracking",
                 status: "notFound",
@@ -222,13 +236,14 @@ export default function Documentation() {
                     "eaf-creative",
                     "eaf-creativetype"
                 ]
-            }} </pre>
+            }`} </pre>
             <ol start="2">
                 <li>
                     <p>Epub</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Epub",
                 name: "epubTracking",
                 status: "notFound",
@@ -239,13 +254,14 @@ export default function Documentation() {
                     "ead-creative",
                     "ead-creativetype"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="3">
                 <li>
                     <p>Comparator</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Comparator",
                 name: "comparatorTracking",
                 status: "notFound",
@@ -253,13 +269,14 @@ export default function Documentation() {
                     "etf-publisher",
                     "etf-name"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="4">
                 <li>
                     <p>Mailing</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Mailing",
                 name: "mailingTracking",
                 status: "notFound",
@@ -267,13 +284,14 @@ export default function Documentation() {
                     "eml-publisher",
                     "eml-name"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="5">
                 <li>
                     <p>Social</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Social",
                 name: "socialTracking",
                 status: "notFound",
@@ -284,13 +302,14 @@ export default function Documentation() {
                     "esc-creative",
                     "esc-creativetype"
                 ]
-            }}</pre>
+            }`}</pre>
             <ol start="6">
                 <li>
                     <p>Sponsored Links</p>
                 </li>
             </ol>
-            <pre>{{
+            <pre>{`
+            {
                 label: "Sponsored Links",
                 name: "sponsoredLinksTracking",
                 status: "notFound",
@@ -299,26 +318,26 @@ export default function Documentation() {
                     "|a",
                     "|g"
                 ]
-            }}</pre> */}
+            }`}</pre>
             <ol start="7">
                 <li>
                     <p>Partnerships</p>
                 </li>
             </ol>
-            <pre>
-                <code>
-                    {`{
-                        label: "Partnerships",
-                        name: "partnershipsTracking",
-                        status: "notFound",
-                        includedParams: [
-                            "ept-publisher",
-                            "ept-name"
-                        ]
-                    }`}
-                </code>
+            <pre>{`
+            {
+                label: "Partnerships",
+                name: "partnershipsTracking",
+                status: "notFound",
+                includedParams: [
+                    "ept-publisher",
+                    "ept-name"
+                ]
+            }`}
             </pre>
             <h3>The IP counter</h3>
+            <p>Displays the IPs, the number of times they appear in the file and their percentage.</p>
+            <p>The columns are sortable by clicking on the table headers</p>
         </div >
     )
 }
