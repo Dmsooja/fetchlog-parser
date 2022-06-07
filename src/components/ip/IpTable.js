@@ -66,37 +66,65 @@ export default function IpTable() {
 
   return (
     <div>
+      <div>
+        <p>
+          To see all the IP occurences in a file using the command line use cut :
+          <pre>
+            cut -d &quot; &quot; -f[column number] [file].csv | sort | uniq -c | sort -rn
+          </pre>
+          Usually the 3rd column contains the IP.
+        </p>
+        <p>
+          Example :
+          <pre>
+            cut -d &quot; &quot; -f3 logfile16829.csv | sort | uniq -c | sort -rn
+          </pre>
+        </p>
+        <br />
+        <p>
+          To pipe the result in a generated csv file add
+          <pre>
+            {`>`} file.csv
+          </pre>
+        </p>
+        <p>
+          Example :
+          <pre>
+            cut -d &quot; &quot; -f3 logfile16829.csv | sort | uniq -c | sort -rn &gt; ips.csv
+          </pre>
+        </p>
+      </div>
       <InfiniteScroll
         dataLength={tableData.length}
         next={getMoreData}
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
       >
-      <Table sortable celled fixed>
-        <Table.Header >
-          <Table.Row>
-            {columns.map(({ label, accessor, sortable, width }) => (
-              <Table.HeaderCell
-                key={accessor}
-                width={width}
-                onClick={sortable ? () => handleSortingChange(accessor) : null}
-              >
-                {label}
-              </Table.HeaderCell>
-            ))}
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-            {tableData && tableData.map((data) => (
-            <Table.Row key={data.id}>
-              {columns.map(({ accessor }) => {
-                const tData = data[accessor] ? data[accessor] : "——";
-                return <Table.Cell key={accessor}>{tData}</Table.Cell>
-              })}
+        <Table sortable celled fixed>
+          <Table.Header >
+            <Table.Row>
+              {columns.map(({ label, accessor, sortable, width }) => (
+                <Table.HeaderCell
+                  key={accessor}
+                  width={width}
+                  onClick={sortable ? () => handleSortingChange(accessor) : null}
+                >
+                  {label}
+                </Table.HeaderCell>
+              ))}
             </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+          </Table.Header>
+          <Table.Body>
+            {tableData && tableData.map((data) => (
+              <Table.Row key={data.id}>
+                {columns.map(({ accessor }) => {
+                  const tData = data[accessor] ? data[accessor] : "——";
+                  return <Table.Cell key={accessor}>{tData}</Table.Cell>
+                })}
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
       </InfiniteScroll>
     </div >
   )
