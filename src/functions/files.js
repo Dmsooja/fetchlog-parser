@@ -104,6 +104,7 @@ function getIpList() {
     ipList.push(data);
     idx ++;
   }
+  ipList.sort((a, b) => b.count - a.count); //sort IpList by ip.count in descending order
   console.log("log lenght dans IPLIST", logs.length);
   console.log(" dans IPLIST", ipList);
   console.log('Finish IPs List');

@@ -1,4 +1,4 @@
-import { Table, Grid } from 'semantic-ui-react';
+import { Table, Grid, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 import { useState, useReducer } from 'react';
 import { ipList } from '../../functions/files';
@@ -7,8 +7,8 @@ import TableHead from './TableHead';
 import TableBody from './TableBody';
 
 
-export default function IpTable() {
-  const data = ipList;
+export default function IpTable(props) {
+  const { data } = props;
 
   const [count, setCount] = useState({
     prev: 0,
@@ -67,33 +67,27 @@ export default function IpTable() {
   return (
     <div>
       <div>
-        <p>
-          To see all the IP occurences in a file using the command line use cut :
-          <pre>
-            cut -d &quot; &quot; -f[column number] [file].csv | sort | uniq -c | sort -rn
-          </pre>
-          Usually the 3rd column contains the IP.
-        </p>
-        <p>
-          Example :
-          <pre>
-            cut -d &quot; &quot; -f3 logfile16829.csv | sort | uniq -c | sort -rn
-          </pre>
-        </p>
+        To see all the IP occurences in a file using the command line use cut :
+        <pre>
+          cut -d &quot; &quot; -f[column number] [file].csv | sort | uniq -c | sort -rn
+        </pre>
+        Usually the 3rd column contains the IP.<br />
+        Example :
+        <pre>
+          cut -d &quot; &quot; -f3 logfile16829.csv | sort | uniq -c | sort -rn
+        </pre>
         <br />
-        <p>
-          To pipe the result in a generated csv file add
-          <pre>
-            {`>`} file.csv
-          </pre>
-        </p>
-        <p>
-          Example :
-          <pre>
-            cut -d &quot; &quot; -f3 logfile16829.csv | sort | uniq -c | sort -rn &gt; ips.csv
-          </pre>
-        </p>
+        To pipe the result in a generated csv file add
+        <pre>
+          {`>`} file.csv
+        </pre>
+        <br />
+        Example :
+        <pre>
+          cut -d &quot; &quot; -f3 logfile16829.csv | sort | uniq -c | sort -rn &gt; ips.csv
+        </pre>
       </div>
+      <h4>IPs found : {ipList.length}</h4>
       <InfiniteScroll
         dataLength={tableData.length}
         next={getMoreData}
@@ -110,15 +104,19 @@ export default function IpTable() {
                   onClick={sortable ? () => handleSortingChange(accessor) : null}
                 >
                   {label}
+                  {accessor == sortField ?
+                    <>
+                      {order == "asc" ? <Icon name='caret up' /> : <Icon name='caret down' />}
+                    </> : null}
                 </Table.HeaderCell>
               ))}
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {tableData && tableData.map((data) => (
-              <Table.Row key={data.id}>
+            {tableData && tableData.map((ip, index) => (
+              <Table.Row key={index}>
                 {columns.map(({ accessor }) => {
-                  const tData = data[accessor] ? data[accessor] : "——";
+                  const tData = ip[accessor] ? ip[accessor] : "——";
                   return <Table.Cell key={accessor}>{tData}</Table.Cell>
                 })}
               </Table.Row>

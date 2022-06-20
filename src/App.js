@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { colFilter } from './functions/filters'; // Function to match collectors with the tags
 import Documentation from './components/Documentation';
 import IpTable from './components/ip/IpTable';
+import { ipList } from './functions/files';
 
 /**
  * Global application, handles all data flows between components
@@ -31,6 +32,8 @@ export default function App() {
 
   // Initialise data as an empty object, update data every time logs csv are decrypted
   const [data, setData] = useState({});
+
+  const [ips, setIps] = useState(ipList);
 
   /**
    * Update site filters by adding the new filter
@@ -127,7 +130,7 @@ export default function App() {
         <Tab.Pane className={"basic"} attached={false}>
           <Container>
             {/* <IpCounter /> */}
-            <IpTable />
+            <IpTable data={ips} />
           </Container>
         </Tab.Pane>
     }, 

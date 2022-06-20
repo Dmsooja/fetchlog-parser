@@ -10,15 +10,6 @@ export default function OutputAd(props) {
     const [activeIndex, setActiveIndex] = useState(null);
     const [tableActiveIndex, setTableActiveIndex] = useState(null);
 
-    // const [defaultActiveIndex, setDefaultActiveIndex] = useState(null);
-    // const [customActiveIndex, setCustomActiveIndex] = useState(null);
-    // const [alertActiveIndex, setAlertActiveIndex] = useState(null);
-
-    // const defaultTags = filters.filter((d) => d.type === 'default');
-    // const customTags = filters.filter((d) => d.type === 'custom');
-    // const alertTags = filters.filter((d) => d.type === 'alert');  
-
-    console.log(data)
     return (
         <div className="ui grid">
             <Grid.Row>
